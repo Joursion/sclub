@@ -1,0 +1,57 @@
+<div id="activity_detail">
+    <% var id = ""; %>
+    <div class="col-lg-8" style="height: 200px">
+        <div class="page-header">
+            <h1> <%= activity.title %> </h1>
+            <p><a href="u/<%= activity.founder.name %>"><%= activity.founder.name %></a>
+                发布于<%= activity.create_date %></p>
+            <hr>
+            <br/>
+            <div class="show">
+                <span class="glyphicon glyphicon-comment"></span><%= activity.comment %>
+                <span class="glyphicon glyphicon-eye-open"></span><%= activity.pv %>
+                <span class="glyphicon glyphicon-user"></span><% activity.join %>
+            </div>
+            <p>活动时间：　<%= activity.activity_date %></p>
+            <p>报名截止时间：　<%= activity.deadline %></p>
+            <p>人员限制：　<%= activity.number_limit %></p>
+            <br/>
+            <p><%= activity.content %></p>
+            <% id = activity._id; %>
+        </div>
+    </div>
+</div>
+
+<form class="ll" method="post">
+    <input type="hidden" id="key1" value="<%= id %>">
+</form>
+
+<% if (isJoin == 1) { %>
+<button type="button" id="join_btn" onclick="activity_join()" value="我要退参">我要退参</button>
+<% } else { %>
+<button type="button" id="join_btn" onclick="activity_join()" value="我要参加">我要参加</button>
+<% } %>
+<script>
+    function getJoinData() {
+        var send_data = {};
+        send_data.activity_id = $('#key1').val();
+        return send_data;
+    }
+
+    function activity_join() {
+        var JoinVal = $("#join_btn").val();
+        console.log('IsJoin' + JoinVal);
+        if (JoinVal == '我要参加') {
+
+            $.post('/join', getJoinData(), function (data) {
+                console.log(data);
+            });
+        } else {
+          //  console.log('退参加');
+            $.post('/deljoin',getJoinData(), function (data) {
+                console.log(data);
+            });
+        }
+    }
+
+</script>

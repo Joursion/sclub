@@ -1,0 +1,37 @@
+<% include header.ejs %>
+
+
+<a class="btn btn-success" type="button" href="/activity_create">我要发布</a>
+
+
+
+
+<section class="content-wrap">
+    <div class="container">
+        <% activitys.forEach(function (activity) { %>
+        <div class="col-md-8 main-content">
+            <article class="post">
+                <div class="post-title">
+                    <h2><a href="/activity/<%= activity._id%>"><%= activity.title %></a> </h2>
+                </div>
+                <div class="post-meta">
+                    <p>发布于<%= activity.create_date %></p>
+                    <p>更新于<%= activity.update_date %></p>
+                </div>
+                <div class="post-content">
+                    <p><%= activity.content %></p>
+                </div>
+                <div class="post-show">
+                    <span class="glyphicon glyphicon-comment"></span><%= activity.comment %>
+                    <span class="glyphicon glyphicon-eye-open"></span><%= activity.pv %>
+                    <span class="glyphicon glyphicon-user"></span><% activity.join %>
+                </div>
+            </article>
+        </div>
+        <% }); %>
+    </div>
+</section>
+
+<% include partials/activity_pagination.ejs %>
+
+<% include footer.ejs %>

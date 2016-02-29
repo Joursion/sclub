@@ -1,0 +1,45 @@
+<% include header.ejs %>
+<% var founder = activity.founder %>
+<% if($this.session.user ) { %>
+<div class="activity_edit">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="activity_title">
+                    <label class="col-md-2">标题
+                        </label>
+                    <h1><%= activity.title %></h1>
+                </div>
+            </div>
+                <form class="form-group" method="post" role="form">
+                    <label class="col-md-2">活动人数</label>、
+                    <div class="col-md-6">
+                        <input name="number_limit" type="text"
+                                value="<%= activity.number_limit %>">
+                    </div>
+                    <label class="col-md-2">报名截止时间</label>
+                    <div class="col-md-6">
+                        <input name="deadline" type="text"
+                               value="<%= activity.deadline %>">
+                    </div>
+                    <label class="col-md-2">活动时间</label>
+                    <div class="col-md-6">
+                        <input name="activity_date" type="text"
+                               value="<%= activity.deadline %>">
+                    </div>
+                    <label class="col-md-2">内容</label>
+                    <div class="col-md-6">
+                       <textarea  rows="3" name="content"><%= activity.content %></textarea>
+                    </div>
+                    <input type="submit" class="btn-default" value="提交">
+                </form>
+        </div>
+    </div>
+</div>
+<% } else { %>
+<div class="error">
+    <h1>您没有权限修改这场活动!，请登陆重试或者再看看其他活动？</h1>
+</div>
+<% } %>
+
+<% include footer.ejs%>

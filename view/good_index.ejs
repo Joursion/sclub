@@ -1,0 +1,41 @@
+<% include header.ejs %>
+<% include partials/good_tag.ejs %>
+
+<a class="btn btn-success" type="button" href="/good_create">我要发布</a>
+
+
+
+
+<section class="content-wrap">
+    <div class="container">
+        <% goods.forEach(function (good) { %>
+        <div class="col-md-8 main-content">
+            <article class="post">
+                <div class="post-title">
+                    <h2><a href="/good/<%= good._id%>"><%= good.name %></a> </h2>
+                </div>
+                <div class="post-meta">
+                    <p>发布于<%= good.create_at %></p>
+                    <p>更新于<%= good.update_at %></p>
+                </div>
+                <div class="post-content">
+                    <p><%= good.content %></p>
+                </div>
+                <div class="post-show">
+                    <span class="glyphicon glyphicon-comment"></span><%= good.comment %>
+                    <span class="glyphicon glyphicon-eye-open"></span><%= good.pv %>
+                    <span class="glyphicon glyphicon-user"></span><% good.star %>
+                </div>
+            </article>
+        </div>
+        <% }); %>
+    </div>
+</section>
+
+<section class="message-count">
+    <h2><%= messageCount %></h2>
+</section>
+
+<% include partials/good_pagination.ejs %>
+
+<% include footer.ejs %>

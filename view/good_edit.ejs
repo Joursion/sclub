@@ -1,0 +1,40 @@
+<% include header.ejs %>
+<% var seller = good.seller %>
+<% if($this.session.user ) { %>
+<div class="good_edit">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="good_title">
+                    <label class="col-md-2">物品名
+                    </label>
+                    <h1><%= good.name %></h1>
+                </div>
+            </div>
+            <form class="form-group" method="post" role="form">
+                <label class="col-md-2">物品价格</label>、
+                <div class="col-md-6">
+                    <input name="prices" type="text"
+                           value="<%= good.prices %>">
+                </div>
+                <label class="col-md-2">报名截止时间</label>
+                <div class="col-md-6">
+                    <input name="good_url" type="text"
+                           value="<%= good.good_url %>">
+                </div>
+                <label class="col-md-2">内容</label>
+                <div class="col-md-6">
+                    <textarea  rows="3" name="content"><%= good.content %></textarea>
+                </div>
+                <input type="submit" class="btn-default" value="提交">
+            </form>
+        </div>
+    </div>
+</div>
+<% } else { %>
+<div class="error">
+    <h1>您没有权限修改这件商品!，请登陆重试或者再看看其他活动？</h1>
+</div>
+<% } %>
+
+<% include footer.ejs%>

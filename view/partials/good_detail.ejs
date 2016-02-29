@@ -1,0 +1,28 @@
+<div id="good_detail">
+    <% var id = ""; %>
+    <div class="col-lg-8" style="height: 200px">
+        <div class="page-header">
+            <h1 id="good_name"> <%= good.name %> </h1>
+            <div id="good_seller_name"><%= good.seller.name %></div>
+            <div>
+                发布于<%= good.create_at %>
+            </div>
+            <hr>
+            <br/>
+            <div class="show">
+                <span class="glyphicon glyphicon-comment"></span><%= good.comment %>
+                <span class="glyphicon glyphicon-eye-open"></span><%= good.pv %>
+                <span class="glyphicon glyphicon-user"></span><% good.star %>
+            </div>
+            <p>价格：　<%= good.prices %></p>
+            <p>链接：　<%= good.good_url %></p>
+            <br/>
+            <p><%= good.content %></p>
+            <% id = good._id; %>
+        </div>
+    </div>
+</div>
+
+<form class="ll" method="post">
+    <input type="hidden" id="key1" value="<%= id %>">
+</form>

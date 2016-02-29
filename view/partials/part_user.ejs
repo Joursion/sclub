@@ -1,0 +1,11 @@
+<% if (this.session.user && this.session) { %>
+<div class="user_card">
+    <%= this.session.user.name %>
+    <img src="<%= this.session.user.email %>">
+    <% } %>
+</div>
+<% else %>
+<div class="log_ig">
+    <button class="login"><a href="/signin">登陆</a> </button>
+    <button class="login"><a href="/signup">注册</a> </button>
+</div>

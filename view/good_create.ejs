@@ -1,0 +1,33 @@
+<% include header.ejs %>
+
+<div class="container" >
+    <form class="form-horizontal" role="form" method="post">
+        <div class="form-group">
+            <label class="col-sm-1 input-sm ">物品名</label>
+            <div class="col-sm-4 input-group-lg">
+                <input name="name" type="text" class="form-control" >
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-1 input-sm ">价格</label>
+            <div class="col-sm-4 input-group-lg">
+                <input name="prices" type="text" class="form-control" placeholder="数字" >
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-1 input-sm ">原物链接</label>
+            <div class="col-sm-4 input-group-lg">
+                <input name="good_url" type="text" class="form-control" placeholder="京东，淘宝等链接" >
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-1 input-sm">具体内容</label>
+            <textarea class="form-control" rows="3" name="content"></textarea>
+        </div>
+        <input type="submit" class="btn btn-default btn-lg" value="发布活动">
+    </form>
+</div>
+
+<% include footer.ejs%>

@@ -1,0 +1,17 @@
+<% include header.ejs %>
+
+<% var MessageLength = messages.lenth ; %>
+<% if (MessageLength == 0) { %>
+    <div class="myMessage">
+        您暂时没有新的消息~~~
+    </div>
+<% } else { %>
+    <% messages.forEach(function (message) { %>
+        <div class="myMessage">
+            <p><%= message.sender %><%= message.type%> 你的闲置<%= message.url %>
+                <a href="<%= message.url%>" > <%= message.content%> </a> </p>
+        </div>
+    <%}); %>
+<% }%>
+
+<% include footer.ejs%>

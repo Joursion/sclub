@@ -1,0 +1,12 @@
+<div class="activity_list">
+    <% activitys.forEach(function (activity){ %>
+        <div class="col-lg-3" style="height: 200px">
+            <div class="page-header">
+                <p><%= activity.create_date %></p>
+                <p><%= activity.update_date %></p>
+                <p><%= activity.content %></p>
+                <a class="ui image" href="activity/<%= activity.founder.name %>"><img src="<%= activity.founder.email %>"></a>
+            </div>
+        </div>
+    <% }); %>
+</div>
