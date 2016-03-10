@@ -1,0 +1,40 @@
+<% include header.ejs %>
+
+
+<div class="container">
+    dsa
+</div>
+<div class="dsds">
+    <form class="form-signin"  method="post" enctype='multipart/form-data'>
+        <h2 class="form-signin-heading">上传文件</h2>
+        <input id="fulAvatar" name="upupupfile" type="file" class="form-control" />
+
+        <br/>
+        <button id="btnSub" class="btn btn-lg btn-primary" type="submit">上 传</button>
+    </form>
+</div>
+
+<script>
+    $(function(){
+        $('#btnSub').on('click',function(){
+            var fulAvatarVal = $('#fulAvatar').val();
+
+            if(fulAvatarVal.length == 0)
+            {
+                $("#container").prepend(errorTip.format('请选择要上传的文件'));
+                return false;
+            }
+
+            var extName = fulAvatarVal.substring(fulAvatarVal.lastIndexOf('.'),fulAvatarVal.length).toLowerCase();
+
+            if(extName != '.png' && extName != '.jpg'){
+                $("#container").prepend(errorTip.format('只支持png和jpg格式图片'));
+                return false;
+            }
+            return true;
+        })
+    });
+</script>
+
+<% include footer.ejs %>
+
