@@ -1,42 +1,81 @@
 <% include header.ejs %>
 
-<div class="useINFO">
+<div class="userINFO">
     <div class="container">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-9">
                 <div class="user_info">
-                    <label><%= user.name %></label>
-                    <h4><%= user.reg_date %></h4>
-                    <h4><%= user.last_login %></h4>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <% var GoodsLength = user_goods.length ; %>
-                <% if (GoodsLength == 0) { %>
-                <div class="user_goods">
-                    <p>该用户没有上架的闲置</p>
-                </div>
-                <% } else { %>
-                <div class="user_goods">
-                    <% user_goods.forEach(function (good) { %>
-                    <h5><%= good.name %></h5>
-                    <% }); %>
-                </div>
-                <% } %>
-            </div>
-            <div class="col-md-4">
-                    <% var JoinLength = user_joins.length; %>
-                    <% if (JoinLength == 0) { %>
-                    <div class="user_join">
-                        <p>该用户还没参加过任何活动</p>
+                    <div class="part_header">
+                        <a href="/">回到主页</a>
                     </div>
-                　　<% } else { %>
-                   <div class="user_join">
-                       <% user_joins.forEach(function (join) { %>
-                       <h5><%= join.activity_id %></h5>
-                       <% }); %>
-                   </div>
-                   <% } %>
+                    <div class="part_content">
+                        <label><%= user.name %></label>
+                        <h4>注册于：<%= user.reg_date %></h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="user_info">
+                    <div class="part_header">
+                        最近发布的闲置
+                    </div>
+                    <div class="part_content">
+                        <% var GoodsLength = user_goods.length ; %>
+                        <% if (GoodsLength == 0) { %>
+                        <div class="user_goods">
+                            <p>该用户没有发布</p>
+                        </div>
+                        <% } else { %>
+                        <div class="user_goods">
+                            <% user_goods.forEach(function (good) { %>
+                            <h5><%= good.name %></h5>
+                            <% }); %>
+                        </div>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="user_info">
+                    <div class="part_header">
+                        最近发布的活动
+                    </div>
+                    <div class="part_content">
+                        <% var ActivityLength = user_activities.length ; %>
+                        <% if (ActivityLength == 0) { %>
+                        <div class="user_goods">
+                            <p>该用户没有发布</p>
+                        </div>
+                        <% } else { %>
+                        <div class="user_goods">
+                            <% user_activities.forEach(function (activity) { %>
+                            <h5><%= activity.name %></h5>
+                            <% }); %>
+                        </div>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="user_info">
+                    <div class="part_header">
+                        最近参加
+                    </div>
+                    <div class="part_content">
+                        <% var JoinLength = user_joins.length; %>
+                        <% if (JoinLength == 0) { %>
+                        <div class="user_join">
+                            <p>该用户还没参加过任何活动</p>
+                        </div>
+                        　　<% } else { %>
+                        <div class="user_join">
+                            <% user_joins.forEach(function (join) { %>
+                            <h5><%= join.activity_id %></h5>
+                            <% }); %>
+                        </div>
+                        <% } %>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

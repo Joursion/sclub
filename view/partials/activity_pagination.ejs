@@ -1,9 +1,9 @@
 <%
 
-var count = 300;//yield $Activity.GetActivityByTab($this.query.tab);
-var pages = Math.ceil(count / 10);
-var page = +$this.query.p || 1;
-var tab = $this.query.tab || '';
+var count = activitiesCount;//yield $Activity.GetActivityByTab($this.query.tab);
+var pages = Math.ceil(count / 6);
+var page = +$this.params.p || 1;
+var tab = $this.params.tab || '';
 var items = [page-2, page-1, page, page+1, page+2];
 var prePage = '?tab=' + tab + '&p=' + (page - 1);
 var nextPage = '?tab=' + tab + '&p=' + (page + 1);
@@ -15,17 +15,17 @@ var nextPage = '?tab=' + tab + '&p=' + (page + 1);
         <div class="col-md-12">
             <ul class="pagination">
                 <% if (page && page > 1) { %>
-                <li><a href="?tab=<%= tab%>&p=<%= page - 1 %>" >&laquo;</a></li>
+                <li><a href="/activity/<%= page - 1 %>" >&laquo;</a></li>
                 <% } %>
 
                 <% items.forEach(function (item) { %>
                 <% if (item && (item > 0) && (item <= pages) && (pages > 1)) { %>
-                <li class="<%= (page == item) ? 'active': '' %>"><a href="?tab=<%= tab %>&p=<%= item %>"><%= item %></a> </li>
+                <li class="<%= (page == item) ? 'active': '' %>"><a href="/activity/<%= item %>"><%= item %></a> </li>
                 <% } %>
                 <% }); %>
 
                 <% if (page && page < pages) { %>
-                <li><a href="?tab=<%= tab%>&p=<%= page + 1%>">&raquo;</a></li>
+                <li><a href="/activity/<%= page + 1%>">&raquo;</a></li>
                 <% } %>
             </ul>
         </div>

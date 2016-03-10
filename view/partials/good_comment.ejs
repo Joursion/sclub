@@ -1,29 +1,4 @@
-<div id="good_comment">
-    <% var good_commentLength = good_comments.lenth; %>
-    <% good_comments.forEach(function (good_comment) { %>
-    <div class="col-lg-8">
-        <div class="page-header">
-            <p><%= good_comment.create_date %></p>
-            <p><%= good_comment.user.name %></p>
-            <p><%= good_comment.content %></p>
-        </div>
-    </div>
-    <% }); %>
-</div>
 
-<div id="good_submit" class="col-lg-8">
-    <% if ($this.session.user) { %>
-    <form class="ll" method="post" >
-        <div class="field">
-            <textarea name="content" id="good_content"></textarea>
-        </div>
-        <input type="submit" class="ui button" value="留言" id="submit_1" >
-    </form>
-    <button type="button" id="submit2" onclick="good_submit()">留言</button>
-    <% } else { %>
-    <p>请<a href="/signin">登陆</a>或者<a href="/signup">注册</a>,发表评论 </p>
-    <% } %>
-</div>
 
 <script>
     function getCommentData(){

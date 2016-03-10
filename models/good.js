@@ -7,7 +7,8 @@ var Schema = mongoose.Schema;
 var GoodSchema = new Schema({
     seller: {
         name: {type: String, required: true},
-        email: {type: String, required: true}
+        email: {type: String, required: true},
+        tx_url:{type: String}
     },
     content:{type: String},
     create_at: {type: Date},
@@ -17,7 +18,8 @@ var GoodSchema = new Schema({
     good_url: {type: String},
     comment:{type: Number},
     pv: {type: Number},
-    star: {type: Number}
+    star: {type: Number},
+    tab:{type:String}
 });
 
 

@@ -8,9 +8,10 @@ var ObjectId = Schema.ObjectId;
 var StarSchema = new Schema({
     user: {
         name: {type: String, required: true},
-        email: {type: String, required: true}
+        email: {type: String, required: true},
+        tx_url:{type: String}
     },
     good_id: {type: ObjectId, required: true}
 });
 
-module .exports = mongoose.model('Star',StarSchema);
+module.exports = mongoose.model('Star',StarSchema);

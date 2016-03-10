@@ -1,24 +1,107 @@
-<div id="good_detail">
-    <% var id = ""; %>
-    <div class="col-lg-8" style="height: 200px">
-        <div class="page-header">
-            <h1 id="good_name"> <%= good.name %> </h1>
-            <div id="good_seller_name"><%= good.seller.name %></div>
-            <div>
-                发布于<%= good.create_at %>
+<div class="good">
+    <div class="container">
+        <div class="row">
+            <% var id = ""; %>
+            <div class="col-lg-9 main-content">
+                <div class="good_detail">
+                    <h1 class="good_name"> <%= good.name %> </h1>
+                    <div class="show_good_seller"><span id="seller_name"><%= good.seller.name %></span>
+                        发布于<%= good.create_at %>
+                    </div>
+                    <div class="show">
+                        <span class="glyphicon glyphicon-comment"></span>&nbsp;<%= good.comment %>&nbsp;
+                        <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<%= good.pv %>&nbsp;
+                        <span class="glyphicon glyphicon-user"></span>&nbsp;<span id="good_star"><%= good.star || 0 %></span>
+                    </div>
+                    <div class="star_button">
+                        <% if (isStar == 1) { %>
+                        <button type="button" class="btn btn-info" id="star_btn" onclick="good_star()" value="取消收藏">取消收藏</button>
+                        <% } else { %>
+                        <button type="button" class="btn btn-info" id="star_btn" onclick="good_star()" value="收藏">收藏</button>
+                        <% } %>
+                    </div>
+                    <div class="show_detail">
+                        <p>价格：　<%= good.prices %></p>
+                        <p>链接： <a href="<%= good.good_url %>" >点我</a></p>
+                        <p><%= good.content %></p>
+                        <% id = good._id; %>
+                    </div>
+                </div>
+
+                <!-->
+                <div class="show_good_comment">
+                    <!-- 新的注释-->
+                    <% good_comments.forEach(function (good_comment) { %>
+                    <!--显示一条评论-->
+                    <div class="activity_show_comment ">
+                        <div class="show_user_img">
+                            <img src="http://www.gravatar.com/avatar/<%= good_comment.user.tx_url%>?s=50&d=retro" class="img-circle" alt="Cinque Terre">
+                        </div>
+                        <p class="comment-info"><%= good_comment.user.name %>　发布于　<span><%= good_comment.create_at %></span></p>
+                        <div class="one_comment">
+                            <%= good_comment.content %>
+                        </div>
+                    </div>
+                    <% }); %>
+                    <div class="content_submit_label">
+                        <label>我要回复</label>
+                    </div>
+                    <div id="good_submit">
+                        <% if ($this.session.user) { %>
+                        <textarea class="col-md-12 comment_edit" rows="7" id="good_content"></textarea>
+                        <br>
+                        <button type="button" class="btn bg-primary" id="good_comment_submit">留言</button>
+                        <% } else { %>
+                        <p class="col-md-8">请<a href="/signin">登陆</a>或者<a href="/signup">注册</a>,发表评论 </p>
+                        <% } %>
+                    </div>
+                </div>
             </div>
-            <hr>
-            <br/>
-            <div class="show">
-                <span class="glyphicon glyphicon-comment"></span><%= good.comment %>
-                <span class="glyphicon glyphicon-eye-open"></span><%= good.pv %>
-                <span class="glyphicon glyphicon-user"></span><% good.star %>
+            <div class="col-md-3 side_bar">
+                <div class="part">
+                    <div class="part_header">
+                        发布者
+                    </div>
+                    <div class="part_content">
+                        <img class="tx_img" src="http://www.gravatar.com/avatar/<%= good.seller.tx_url  %>?s=30&r=30&d=retro">
+                        <a href="/u/<%= good.seller.name %>"><span><%= good.seller.name %></span></a>
+
+                    </div>
+                </div>
+                <div class="part">
+                    <div class="part_header">
+                        Starers
+                    </div>
+                    <div class="part_content">
+                        <% starers.forEach(function(star) { %>
+                        <a href="/u/<%= star.user.name %>"><img class="tx_img" src="http://www.gravatar.com/avatar/<%= star.user.tx_url %>?s=30&r=30&d=retro" title="<%= star.user.name %>"></a>　　　　　　　　　　　　
+                        <% }); %>
+                    </div>
+                </div>
+                <div class="part">
+                    <div class="part_header">
+                        热门闲置
+                    </div>
+                    <div class="part_content">
+                        <% HotGoods.forEach(function(hot) { %>
+                        <p><a href="/good/<%= hot._id %>"><%= hot.name %></a> </p>
+                        <% }); %>
+                    </div>
+                </div>
+                <div class="part">
+                    <div class="part_header">
+                        相关
+                    </div>
+                    <div class="part_content">
+                        ni shuo ne
+                        ni shuo ne
+                        ni shuo ne
+                        ni shuo ne
+                        ni shuo ne
+                        ni shuo ne
+                    </div>
+                </div>
             </div>
-            <p>价格：　<%= good.prices %></p>
-            <p>链接：　<%= good.good_url %></p>
-            <br/>
-            <p><%= good.content %></p>
-            <% id = good._id; %>
         </div>
     </div>
 </div>
@@ -26,3 +109,58 @@
 <form class="ll" method="post">
     <input type="hidden" id="key1" value="<%= id %>">
 </form>
+
+<script>
+    function getCommentData(){
+        var send_data = {};
+        send_data.content = $("#good_content").val();
+        send_data.good_id = $("#key1").val();
+        send_data.seller = $("#seller_name").text();
+        send_data.good_name = $(".good_name").text();
+        return send_data;
+    }
+
+    function getStarData() {
+        var send_data = {};
+        send_data.good_id = $("#key1").val();
+        return send_data;
+
+    }
+
+    $("#good_comment_submit").click(function(){
+        $.post('/good_comment_submit',getCommentData(), function (data) {
+            console.log(data);
+        });
+    });
+
+    function good_star() {
+        var StarVal = $("#star_btn").text();
+        console.log('StarVal' + StarVal);
+        if (StarVal == '收藏') {
+            $.ajax({
+                data: getStarData(),
+                url: '/star',
+                type: 'post',
+                success: function (data) {
+                    console.log(data.star);
+                    $("#good_star").text(data.star);
+                    $("#star_btn").text(data.status);
+                }
+
+            })
+        } else {
+            $.ajax({
+                data: getStarData(),
+                url: '/delstar',
+                type: 'post',
+                success: function (data) {
+                    console.log(data.star);
+                    $("#good_star").text(data.star);
+                    $("#star_btn").text(data.status);
+                }
+            })
+        }
+    }
+
+
+</script>

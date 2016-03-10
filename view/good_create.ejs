@@ -1,33 +1,67 @@
 <% include header.ejs %>
 
-<div class="container" >
-    <form class="form-horizontal" role="form" method="post">
-        <div class="form-group">
-            <label class="col-sm-1 input-sm ">物品名</label>
-            <div class="col-sm-4 input-group-lg">
-                <input name="name" type="text" class="form-control" >
-            </div>
-        </div>
+<div class="good_create">
+    <div class="container">
+        <div class="row">
+            <form class="form-horizontal" role="form" method="post">
+                <div class="form-group">
+                    <label class="col-md-2 input-lg">物品名</label>
+                    <div class="col-md-4 input-group-lg">
+                        <input id="name" name="name" type="text" class="form-control" >
+                        <select class="col-md-２ form-control select_class" name="tab">
+                            <option value="music">音乐</option>
+                            <option value="sport">运动</option>
+                            <option value="3c">数码</option>
+                            <option value="study">学习</option>
+                            <option value="game">游戏</option>
+                            <option value="life">生活</option>
+                        </select>
+                    </div>
 
-        <div class="form-group">
-            <label class="col-sm-1 input-sm ">价格</label>
-            <div class="col-sm-4 input-group-lg">
-                <input name="prices" type="text" class="form-control" placeholder="数字" >
-            </div>
-        </div>
+                </div>
 
-        <div class="form-group">
-            <label class="col-sm-1 input-sm ">原物链接</label>
-            <div class="col-sm-4 input-group-lg">
-                <input name="good_url" type="text" class="form-control" placeholder="京东，淘宝等链接" >
+                <div class="form-group">
+                    <label class="col-md-2 input-lg ">价格</label>
+                    <div class="col-md-4 input-group-lg">
+                        <input name="prices" type="text" class="form-control" placeholder="数字" >
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-2 input-lg ">原物链接</label>
+                    <div class="col-md-4 input-group-lg">
+                        <input name="good_url" type="text" class="form-control" placeholder="京东，淘宝等链接" >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 input-lg">具体内容</label>
+                    <textarea class="col-md-6 form-control" rows="6" name="content"></textarea>
+                </div>
+                <input type="submit" class="btn btn-default btn-lg" value="发布闲置">
+            </form>
+            <div class="dsds">
+                <form class="form-signin" role="form" method="post" enctype='multipart/form-data'>
+                    <h2 class="form-signin-heading">上传文件</h2>
+                    <input id="fulAvatar" name="fulAvatar" type="file" class="form-control" />
+                    <br/>
+                    <button id="btnSub" class="btn btn-lg btn-primary" type="submit">上 传</button>
+                </form>
             </div>
         </div>
-        <div class="form-group">
-            <label class="col-sm-1 input-sm">具体内容</label>
-            <textarea class="form-control" rows="3" name="content"></textarea>
-        </div>
-        <input type="submit" class="btn btn-default btn-lg" value="发布活动">
-    </form>
+    </div>
 </div>
+
+<script>
+    $(function(){
+        $("#name").blur(function () {
+            var name = $("#name").val();
+            if (name == "") {
+                $("#name").val("请输入物品名");
+            }
+        })
+    })
+
+</script>
+
 
 <% include footer.ejs%>

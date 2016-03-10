@@ -10,7 +10,7 @@ var UserSchema = new Schema({
     state: {type: Number},　//标记是否已经进行邮箱激活
     password: {type: String, required: true},
     reg_date: {type: Date, required: Date.now},
-    last_login: {type: Date, required: Date.now}
+    tx_url:{type: String}
 });
 
 UserSchema.index({name: 1});

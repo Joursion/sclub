@@ -19,9 +19,14 @@ module.exports = {
             "session": checkNotLogin
         }
     },
-    "POST /sign": {
+    "POST /signin": {
         "request": {
             "body": checkSigninBody
+        }
+    },
+    "POST /join":{
+        "request": {
+            "session": checkLogin
         }
     }
 };
@@ -71,6 +76,7 @@ function checkSignupBody() {
     body.name = validator.trim(body.name);
     body.email = validator.trim(body.email);
     body.password = md5(validator.trim(body.password));
+    body.tx_url = md5(validator.trim(body.email));
     return true;
 }
 
@@ -83,7 +89,7 @@ function checkSigninBody() {
         flash = {error: '请填写密码'};
     }
 
-    if (falsh) {
+    if (flash) {
         this.flash = flash;
         this.redirect('back');
         return false;

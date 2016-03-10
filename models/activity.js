@@ -8,7 +8,8 @@ ActivitySchema = new Schema({
     title: {type: String, required: true},
     founder: {
         name: {type: String, required: true},
-        email: {type: String, required: true}
+        email: {type: String, required: true},
+        tx_url:{type: String}
     },
     create_date: {type: Date, required: true},
     update_date: {type: Date, required: true},
@@ -18,10 +19,6 @@ ActivitySchema = new Schema({
     number_limit: {type: String, required: true},
     join: {type: Number, required: true},
     pv: {type: Number},
-    people: {
-        name: {type: String},
-        email: {type: String}
-    },
     comment: {type: Number}
 });
 

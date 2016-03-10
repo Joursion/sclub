@@ -10,7 +10,8 @@ var activityCommentSchema = new Schema({
     activity_id: {type: ObjectId, required: true},
     user: {
         name: {type: String, required: true},
-        email: {type: String, required: true}
+        email: {type: String, required: true},
+        tx_url: {type: String}
     },
     content: {type: String, required: true},
     create_at: {type: Date, required: true}

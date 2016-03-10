@@ -25,7 +25,10 @@
     "nodemailer": "2.1.0",
     "markdown-it": "*",
     "gravatar": "*",
-    "moment": "*"
+    "moment": "*",
+    "formidable": "latest",
+    "qn":"*",
+    "koa-body":"*"
   },
   "engines": {
     "node": ">=4"

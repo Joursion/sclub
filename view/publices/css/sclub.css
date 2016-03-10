@@ -1,0 +1,332 @@
+/*activity 详情页布局　*/
+.col-md-8{
+    margin-right: 0;
+}
+
+.my_header{
+    background-color: #f4f4f4;
+}
+
+.activity_detail {
+
+    overflow: hidden;
+    position: relative;
+}
+
+.activity_detail .main-content{
+    margin-bottom: 50px;
+
+}
+.activity_detail .main-content .show_activity_detail{
+    border-radius: 10px 10px;
+    padding: 10px;
+    background-color: #f6f6f6;
+    margin-bottom: 50px;
+}
+
+.activity_detail .main-content .show_user{
+    color: #3e3939;
+    float: left;
+}
+
+.activity_detail .main-content .show{
+    margin-left: 20px;
+    float: left;
+    color: #717171;
+}
+
+.activity_detail .main-content .join_button{
+    margin-left: 20px;
+}
+.activity_detail .main-content .join_button .btn-info{
+    padding: 0 10px;
+    margin-left: 30px;
+ }
+.activity_detail .main-content .join_button .btn-success{
+    padding: 0 10px;
+    margin-left: 30px;
+}
+
+.activity_detail .main-content .activity_show_comment{
+    padding-top: 10px;
+    margin-bottom: 3px;
+    overflow: hidden;
+}
+.activity_show_comment .comment-info{
+    float: left;
+    padding-top: 3px;
+    padding-left: 20px;
+    color: #c0c0c0;
+}
+.activity_show_comment .one_comment{
+    margin-top:30px;
+    margin-left: 53px;
+    display: block;
+    color: #333;
+    padding-left: 15px;
+    padding-top: 5px;
+    padding-bottom: 10px;
+}
+
+.activity_show_comment .show_user_img{
+    width:53px;
+    height: 53px;
+    margin-right: 0;
+    float: left;
+}
+.activity_show_comment .comment-info{
+    float: left;
+    padding-top: 3px;
+    padding-left: 10px;
+    color: #c0c0c0;
+}
+
+.activity_show_comment{
+    padding: 15px 0;
+    border-bottom:1px solid #fcf8e3;
+    margin-top: 5px;
+    font-size:16px;
+}
+.activity_comment .form-control{
+    margin-top: 10px;
+    resize: none;
+    border: 0;
+    line-height: 2em;
+    outline:none;
+    -webkit-user-select: none;
+}
+
+.show_activity_detail{
+    border-bottom: 40px solid #ffffff;
+    padding-bottom: 20px;
+}
+
+.content_submit_label{
+    margin-top: 20px;
+}
+
+.comment_edit{
+    margin-top: 10px;
+    padding:10px;
+    resize: none;
+    border: 1px solid #d5d5d5;
+    line-height: 2em;
+    outline:none;
+}
+
+.bg-primary{
+    margin-top: 10px;
+}
+
+.side_bar .part{
+    float: left;
+    border-bottom: 10px;
+    overflow: hidden;
+}
+
+.side_bar .part .part_header{
+    width:255px;
+    background: #f4f4f4;
+    padding: 10px;
+    border-radius: 7px;
+
+}
+.side_bar .part .part_content{
+    width: 255px;
+    padding: 10px;
+    background: #ffffff;
+    margin-bottom: 20px;
+    float: left;
+}
+
+.side_bar .part .part_content .btn-success {
+    margin-left: 10px;
+}
+.side_bar .part .part_content span{
+    margin-left: 10px;
+}
+
+.side_bar .part .part_content .tx_img{
+    display: inline-block;
+    float: left;
+    margin-left: 3px;
+}
+
+.side_bar .ad{
+    margin-bottom: 10px;
+}
+
+
+/*activity　首页*/
+.content-wrap .main-content{
+
+}
+
+.content-wrap .main-content .post{
+    margin-bottom: 20px;
+    padding: 20px;
+    overflow: hidden;
+    background-color: #fbfbfb;
+    border-radius: 5px;
+}
+
+.content-wrap .main-content .post .post-meta{
+    color: #bdbdbd;
+}
+
+.content-wrap .main-content .post .post-content{
+    padding-top: 20px;
+    height: 50px;
+    text-overflow: ellipsis;
+    white-space:nowrap;
+    overflow: hidden;
+    padding-bottom: 10px;
+}
+
+.content-wrap .main-content .post .post-show{
+    color: #717171;
+}
+
+
+/*good 首页*/
+
+
+.content-good{
+    margin-top: 40px;
+}
+
+.content-good .col-md-3.side_bar{
+
+}
+
+.content-good .main-content .good_list{
+    float: left;
+    height: 220px;
+    padding: 10px;
+}
+
+.content-good .main-content .good_list .good-img{
+    width:100px;
+    height: 100px;
+}
+
+
+.content-good .main-content .good_list .good_price{
+    color: #c71623
+}
+
+.content-good .main-content .good_list .good_price{
+    color: #c71623
+}
+
+.content-good .main-content .good_list .good-show{
+    color: #717171;
+}
+
+
+/*good　详情页面*/
+
+.good{
+
+    overflow: hidden;
+    position: relative;
+}
+
+.good .main-content{
+    margin-bottom: 50px;
+}
+
+.good .main-content .show_good_seller{
+    color: #3e3939;
+    float: left;
+}
+
+.good .main-content .show{
+    margin-left: 20px;
+    float: left;
+    color: #717171;
+}
+
+.good .main-content .good_detail {
+    border-radius: 10px 10px;
+    padding: 10px;
+    background-color: #f6f6f6;
+    margin-bottom: 50px;
+}
+
+.good .main-content .good_detail .show_detail{
+    margin-top: 70px;
+}
+
+.good .main-content .star_button{
+    margin-left: 20px;
+}
+.good .main-content .star_button .btn-info{
+    padding: 0 10px;
+    margin-left: 30px;
+}
+.good .main-content .star_button .btn-success{
+    padding: 0 10px;
+    margin-left: 30px;
+}
+
+
+
+
+    /*登陆界面*/
+.signin{
+  /*  margin-top: 100px;
+    margin-left: 200px;*/
+    margin: auto;
+}
+
+.signin .btn-signup{
+    margin-left: 10px;
+}
+
+.signup{
+    margin-top: 150px;
+}
+
+/*闲置物品创建页面*/
+.good_create .form-group .form-control{
+    margin-top: 10px;
+    padding:10px;
+    resize: none;
+    border: 1px solid #d5d5d5;
+    line-height: 2em;
+    outline:none;
+}
+
+.select_class{
+    float: left;
+}
+
+/*个人信息页面*/
+
+.userINFO{
+    margin-top:100px;
+}
+.userINFO .user_info{
+    margin-top: 10px;
+}
+
+.userINFO .part_header{
+    width: inherit;
+    background: #f4f4f4;
+    padding: 10px;
+    border-radius: 7px;
+    color: #c7bdaf;
+
+}
+.userINFO  .part_content{
+    width: inherit;
+    padding: 10px;
+    background: #ffffff;
+    margin-bottom: 40px;
+}
+
+.pagination{
+    margin: auto;
+    width: 1000px;
+}

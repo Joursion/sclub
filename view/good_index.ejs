@@ -1,40 +1,83 @@
 <% include header.ejs %>
 <% include partials/good_tag.ejs %>
 
-<a class="btn btn-success" type="button" href="/good_create">我要发布</a>
-
-
-
-
-<section class="content-wrap">
+<section class="content-good">
     <div class="container">
-        <% goods.forEach(function (good) { %>
-        <div class="col-md-8 main-content">
-            <article class="post">
-                <div class="post-title">
-                    <h2><a href="/good/<%= good._id%>"><%= good.name %></a> </h2>
+        <div class="col-md-9 main-content">
+            <% goods.forEach(function (good) { %>
+                <div class="col-md-3 good_list" >
+                    <div class="good">
+                        <div class="good-img">
+                            <img src="../s.jpg">
+                        </div>
+                        <div class="good-name">
+                            <h4><a href="/good/<%= good._id%>"><%= good.name %></a> </h4>
+                        </div>
+                        <div class="good_price">
+                            <span>￥&nbsp;<%= good.prices %></span>
+                        </div>
+                        <div class="good-show">
+                            <span class="glyphicon glyphicon-comment"></span>&nbsp;<%= good.comment %>&nbsp;
+                            <span class="glyphicon glyphicon-eye-open">&nbsp;</span><%= good.pv %>&nbsp;
+                            <span class="glyphicon glyphicon-star">&nbsp;</span><%= good.star %>
+                        </div>
+                    </div>
                 </div>
-                <div class="post-meta">
-                    <p>发布于<%= good.create_at %></p>
-                    <p>更新于<%= good.update_at %></p>
-                </div>
-                <div class="post-content">
-                    <p><%= good.content %></p>
-                </div>
-                <div class="post-show">
-                    <span class="glyphicon glyphicon-comment"></span><%= good.comment %>
-                    <span class="glyphicon glyphicon-eye-open"></span><%= good.pv %>
-                    <span class="glyphicon glyphicon-user"></span><% good.star %>
-                </div>
-            </article>
+            <% }); %>
         </div>
-        <% }); %>
+
+        <div class="col-md-3 side_bar">
+
+            <% if ($this.session.user) { %>
+            <div class="part">
+                <div class="part_header">
+                    个人信息
+                </div>
+                <div class="part_content">
+                    <img class="tx_img" src="http://www.gravatar.com/avatar/<%= $this.session.user.tx_url %>?s=30&r=30&d=retro">
+                    <a href="/u/<%= $this.session.user.name %>"><span><%= $this.session.user.name %></span></a>
+
+                    <a class="btn btn-success" type="button" href="/good_create">我要发布</a>
+                </div>
+            </div>
+            <% } else { %>
+            <div class="part">
+                <div class="part_header">
+                    欢迎来到nbut.club
+                </div>
+                <div class="part_content">
+                    您可以选择　<a href="/signin">登陆</a>或者<a href="/signup">注册</a>
+                </div>
+            </div>
+            <% } %>
+
+            <div class="part">
+                <div class="part_header">
+                    热门
+                </div>
+                <div class="part_content">
+                    <% HotGoods.forEach(function(hot) { %>
+                    <p><a href="/good/<%= hot._id %>"><%= hot.name %></a> </p>
+                    <% }); %>
+                </div>
+            </div>
+            <div class="part">
+                <div class="part_header">
+                    相关
+                </div>
+                <div class="part_content">
+                    ni shuo ne
+                    ni shuo ne
+                    ni shuo ne
+                    ni shuo ne
+                    ni shuo ne
+                    ni shuo ne
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 
-<section class="message-count">
-    <h2><%= messageCount %></h2>
-</section>
 
 <% include partials/good_pagination.ejs %>
 
