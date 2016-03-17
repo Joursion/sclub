@@ -3,12 +3,12 @@
 
 <section class="content-good">
     <div class="container">
-        <div class="col-md-9 main-content">
+        <div class="col-md-9 col-sm-12 main-content">
             <% goods.forEach(function (good) { %>
                 <div class="col-md-3 good_list" >
                     <div class="good">
                         <div class="good-img">
-                            <img src="../s.jpg">
+                            <img src="<%= good.img_url %>" alt="图片">
                         </div>
                         <div class="good-name">
                             <h4><a href="/good/<%= good._id%>"><%= good.name %></a> </h4>
@@ -26,10 +26,10 @@
             <% }); %>
         </div>
 
-        <div class="col-md-3 side_bar">
+        <div class="col-md-3 col-sm-12 side_bar">
 
             <% if ($this.session.user) { %>
-            <div class="part">
+            <div class=" col-md-12  col-sm-12 part">
                 <div class="part_header">
                     个人信息
                 </div>
@@ -41,7 +41,7 @@
                 </div>
             </div>
             <% } else { %>
-            <div class="part">
+            <div class="col-md-12  col-sm-12 part">
                 <div class="part_header">
                     欢迎来到nbut.club
                 </div>
@@ -51,7 +51,7 @@
             </div>
             <% } %>
 
-            <div class="part">
+            <div class="col-md-12  col-sm-12 part">
                 <div class="part_header">
                     热门
                 </div>
@@ -61,7 +61,7 @@
                     <% }); %>
                 </div>
             </div>
-            <div class="part">
+            <div class="col-md-12  col-sm-12 part">
                 <div class="part_header">
                     相关
                 </div>

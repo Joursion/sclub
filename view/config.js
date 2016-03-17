@@ -6,6 +6,5 @@ module.exports = {
     layout: false,
     viewExt: 'ejs',
     cache: true,
-    debug: false,
-    filters : require('./other/filters')
+    debug: false
 };

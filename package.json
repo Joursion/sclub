@@ -28,7 +28,9 @@
     "moment": "*",
     "formidable": "latest",
     "qn":"*",
-    "koa-body":"*"
+    "koa-body":"*",
+    "co-body":"*",
+    "node-uuid":"*"
   },
   "engines": {
     "node": ">=4"

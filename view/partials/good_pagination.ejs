@@ -1,13 +1,9 @@
 <%
-
 var count = Goodcounts;//yield $Good.GetActivityByTab($this.query.tab);
 var pages = Math.ceil(count / 12);
 var page = +$this.params.p || 1;
 var tab = $this.params.tab || '';
 var items = [page-2, page-1, page, page+1, page+2];
-var prePage = '?tab=' + tab + '&p=' + (page - 1);
-var nextPage = '?tab=' + tab + '&p=' + (page + 1);
-
 %>
 
 

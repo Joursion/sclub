@@ -3,7 +3,7 @@
 <section class="content-wrap">
     <div class="container">
         <div class="row">
-            <div class="col-md-9 main-content">
+            <div class="col-md-9 col-sm-12 main-content">
                 <% activitys.forEach(function (activity) { %>
                     <article class="post">
                         <div class="post-title">
@@ -25,10 +25,10 @@
             </div>
 
             <!--右边-->
-            <div class="col-md-3 side_bar">
+            <div class="col-md-3 col-sm-12 side_bar">
 
                 <% if ($this.session.user) { %>
-                <div class="part">
+                <div class="col-md-12  col-sm-12 part">
                     <div class="part_header">
                         个人信息
                     </div>
@@ -40,7 +40,7 @@
                     </div>
                 </div>
                 <% } else { %>
-                <div class="part">
+                <div class="col-md-12  col-sm-12 part">
                     <div class="part_header">
                         欢迎来到nbut.club
                     </div>
@@ -50,7 +50,7 @@
                 </div>
                 <% } %>
 
-                <div class="part">
+                <div class="col-md-12  col-sm-12 part">
                     <div class="part_header">
                         热门活动
                     </div>
@@ -60,7 +60,7 @@
                         <% }); %>
                     </div>
                 </div>
-                <div class="part">
+                <div class="col-md-12  col-sm-12 part">
                     <div class="part_header">
                         相关
                     </div>

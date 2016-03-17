@@ -23,6 +23,10 @@ var parse = require('co-busboy');
 var fs = require('fs');
 var path = require('path');
 var gravatar = require('gravatar');
+var uuid = require('node-uuid');
+/*
+var multer = require('koa-multer');
+var upload = multer({dest: 'tmp/'});*/
 
 module.exports = function (app, router) {
 
@@ -152,6 +156,7 @@ module.exports = function (app, router) {
         data.user = this.session.user;
         data.user.tx_url = this.session.user.tx_url;
         data.create_at = Date.now();
+
         //生成Message
         /*var message = {};
         message.type = "回复了";
@@ -162,12 +167,15 @@ module.exports = function (app, router) {
         var message = {
             type: "回复了你的活动",
             sender: this.session.user.name,
-            target: "",
-            url: "",
+            target: data.activity_founder,
+            url: "/activity/" + data.activity_id,
+            content : data.activity_title,
+            has_read: false,
             create_at : Date.now()
         };
 
         console.log(data);
+        console.log(message);
         yield [
             $ActivityComment.addActivityComment(data),
             $Activity.incCommentById(data.activity_id),
@@ -218,7 +226,13 @@ module.exports = function (app, router) {
 
     //activity 创建
     router.get('/activity_create', function *() {
-        yield this.render('activity_create');
+        var MessageCount = 0;
+        if (this.session.user) {
+            MessageCount = yield $Message.CountMyMessage(this.session.user.name);
+        }
+        yield this.render('activity_create',{
+            messageCount: MessageCount
+        });
     });
 
     router.post('/activity_create', function *() {
@@ -267,7 +281,7 @@ module.exports = function (app, router) {
     });
 
     //good 首页
-    router.get('/good', function *() {
+   /* router.get('/good', function *() {
         var tab = this.query.tab;
         var p = this.query.p;
         var MessageCount = 0;
@@ -279,7 +293,7 @@ module.exports = function (app, router) {
             messageCount: MessageCount,
             Goodcounts: $Good.getGoodsCount(tab)
         });
-    });
+    });*/
 
     /*测试good的restful*/
     router.get('/good/:tab/:p',function *(){
@@ -301,7 +315,13 @@ module.exports = function (app, router) {
 
     //good　创建
     router.get('/good_create', function *() {
-        yield this.render('good_create');
+        var MessageCount = 0;
+        if (this.session.user) {
+            MessageCount = yield $Message.CountMyMessage(this.session.user.name);
+        }
+        yield this.render('good_create',{
+            messageCount: MessageCount
+        });
     });
 
     router.post('/good_create', function *() {
@@ -314,8 +334,7 @@ module.exports = function (app, router) {
         data.create_at = Date.now();
         data.update_at = Date.now();
         yield $Good.addGood(data);
-        this.flash = {success: '发布闲置成功成功'};
-        this.redirect('/good');
+        this.redirect('/good/all/1');
 
     });
 
@@ -424,13 +443,10 @@ module.exports = function (app, router) {
     });
 
     router.get('/message', function *() {
-        var MessageCount = 0;
-        if (this.session.user) {
-            MessageCount = yield $Message.CountMyMessage(this.session.user.name);
-        }
+        yield $Message.readMessage(this.session.user.name);
         yield this.render('message', {
             messages: $Message.getMessageByName(this.session.user.name),
-            messageCount: MessageCount
+            messageCount: 0
         });
     });
 
@@ -444,7 +460,9 @@ module.exports = function (app, router) {
     router.get('/img', function *() {
         var uid = uuid.v4();
         console.log(uid);
-        yield this.render('testimg');
+        yield this.render('testimg',{
+            messageCount: 0
+        });
     });
 
     /*router.post('/img', function *() {
@@ -496,32 +514,58 @@ module.exports = function (app, router) {
         this.redirect('/');
 
     });*/
-
+/* 使用的co-busbody*/
     router.post('/img' , function *(next){
+
         var parts = parse(this);
         var part;
-
-        while (part = yield parts){
+        var file_src;
+        while (part = yield parts) {
             var stream = fs.createWriteStream('tmp/' + part.filename);
+            file_src = "tmp/" + part.filename;
             part.pipe(stream);
-            //console.log(part);
-            console.log('upload %s --> %s',part.filename, stream.path);
-            var client = qn.create({
-                accessKey: 'qgEdPE_-N9w0Ln_ckceM6B1PoJhl0-BCkTnuQKre',
-                secretKey: 'QXemEA4LSNpywF3BiUNYkID5L0ur3-dfKYeVrr8N',
-                bucket: 'nbut-club',
-                origin:'7xrkb1.com1.z0.glb.clouddn.com'
+            console.log('uploading %s -> %s', part.filename, stream.path);
+        }
 
-            });
-
-            console.log(stream.path);
-            client.uploadFile(stream.path,{key:'dsada.png'},function(err, result){
-                console.log(result);
+        /*使用qiniu*/
+        var qiniu = require("qiniu");
+        qiniu.conf.ACCESS_KEY = 'qgEdPE_-N9w0Ln_ckceM6B1PoJhl0-BCkTnuQKre';
+        qiniu.conf.SECRET_KEY = 'QXemEA4LSNpywF3BiUNYkID5L0ur3-dfKYeVrr8N';
+        var bucket = 'nbut-club';
+        var key = uuid.v4() + '.jpg';
+        var cbdata;
+        //构建上传策略函数
+        function uptoken(bucket, key) {
+            var putPolicy = new qiniu.rs.PutPolicy(bucket+":"+key);
+            return putPolicy.token();
+        }
+        //生成上传 Token
+        var token = uptoken(bucket, key);
+        function uploadFile(uptoken, key, localFile) {
+            var extra = new qiniu.io.PutExtra();
+            qiniu.io.putFile(uptoken, key, localFile, extra, function(err, ret) {
+                if(!err) {
+                    // 上传成功， 处理返回值
+                    console.log(ret.key);
+                    cbdata = ret.key;
+                } else {
+                    // 上传失败， 处理返回代码
+                    console.log(err);
+                }
             });
         }
-        this.redirect('/');
+        //调用uploadFile上传
+        uploadFile(token, key, file_src);
+        this.redirect('back');
+        this.status = 200;
+        this.body = key;
     });
 
+  /*  router.post('/img', upload.single(''), function *() {
+
+    })*/
+        
+        
     router.post('/star', function *(){
         var data = this.request.body;
         data.user = this.session.user;
@@ -584,7 +628,6 @@ module.exports = function (app, router) {
             messageCount: 0
         });
     });
-
 
     //discovery 页面
     router.get('/discovery',function *(){

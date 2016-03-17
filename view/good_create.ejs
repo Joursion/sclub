@@ -3,12 +3,12 @@
 <div class="good_create">
     <div class="container">
         <div class="row">
-            <form class="form-horizontal" role="form" method="post">
+            <form class="form-horizontal" role="form"   method="post" action="/good_create">
                 <div class="form-group">
-                    <label class="col-md-2 input-lg">物品名</label>
-                    <div class="col-md-4 input-group-lg">
+                    <label class="col-md-2 col-sm-3 input-lg">物品名</label>
+                    <div class="col-md-4 col-sm-9 input-group-lg">
                         <input id="name" name="name" type="text" class="form-control" >
-                        <select class="col-md-２ form-control select_class" name="tab">
+                        <select class="col-md-２ col-sm-12 form-control select_class" name="tab">
                             <option value="music">音乐</option>
                             <option value="sport">运动</option>
                             <option value="3c">数码</option>
@@ -17,51 +17,96 @@
                             <option value="life">生活</option>
                         </select>
                     </div>
-
                 </div>
 
                 <div class="form-group">
-                    <label class="col-md-2 input-lg ">价格</label>
-                    <div class="col-md-4 input-group-lg">
+                    <label class="col-md-2 col-sm-3 input-lg ">价格</label>
+                    <div class="col-md-4 col-sm-9 input-group-lg">
                         <input name="prices" type="text" class="form-control" placeholder="数字" >
                     </div>
                 </div>
-
                 <div class="form-group">
-                    <label class="col-md-2 input-lg ">原物链接</label>
-                    <div class="col-md-4 input-group-lg">
-                        <input name="good_url" type="text" class="form-control" placeholder="京东，淘宝等链接" >
-                    </div>
+                    <label class="col-md-2 col-sm-3 input-lg">具体内容</label>
+                    <textarea class="col-md-6 col-sm-9 form-control" rows="6" name="content"></textarea>
                 </div>
-                <div class="form-group">
-                    <label class="col-md-2 input-lg">具体内容</label>
-                    <textarea class="col-md-6 form-control" rows="6" name="content"></textarea>
-                </div>
-                <input type="submit" class="btn btn-default btn-lg" value="发布闲置">
+                <input type="hidden" name="img_url" id="img_url">
+                <input type="submit" class="btn btn-default btn-lg" id="up" value="发布闲置">
             </form>
-            <div class="dsds">
-                <form class="form-signin" role="form" method="post" enctype='multipart/form-data'>
-                    <h2 class="form-signin-heading">上传文件</h2>
-                    <input id="fulAvatar" name="fulAvatar" type="file" class="form-control" />
-                    <br/>
-                    <button id="btnSub" class="btn btn-lg btn-primary" type="submit">上 传</button>
-                </form>
+            <div class="col-md-4 col-sm-6">
+                <span>目前仅支持2m一下的一张图片</span>
+                <input id="fulAvatar" name="fulAvatar" type="file" class="form-control" multiple="multiple" />
+                <input type="submit" class="btn btn-default btn-lg" id="upload" value="上传图片">
             </div>
+            <span class="show_img"></span>
+            <!-- <div class="upload_img">
+                <form class="form-signin" role="form"  enctype='multipart/form-data'  >
+                    &lt;!&ndash;<input id="fulAvatar" name="fulAvatar" type="file" class="form-control" />&ndash;&gt;
+                </form>
+                    <br/>
+                    <button id="btnSub" class="btn btn-lg btn-primary" onclick="img_upload()">上 传</button>
+                <input type="file" name="uploadify" id="uploadify" />
+                <a href="javascript:$('#uploadify').uploadify('upload')">上传</a>
+            </div>-->
         </div>
     </div>
 </div>
 
 <script>
-    $(function(){
-        $("#name").blur(function () {
-            var name = $("#name").val();
-            if (name == "") {
-                $("#name").val("请输入物品名");
-            }
+
+    $(function() {
+        $("#upload").click(function () {
+            var data =  new FormData();
+            $.each($('#fulAvatar')[0].files, function(i, file) {
+                data.append('upload_file'+i, file);
+            });
+            /*data.append('upload', $("#fulAvatar").file);*/
+            $.ajax({
+                url: '/img',
+                data: data,
+                type: 'POST',
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    $("#img_url").val("http://7xrkb1.com1.z0.glb.clouddn.com/" + data);
+                    $(".show_img").text("上传成功");
+                    $("#upload").hide();
+                },
+                error: function () {
+                    alert('出现错误');
+                }
+            })
         })
-    })
+
+    });
+
+
+
+    function img_upload() {
+        var send_data = $("#fulAvatar");
+        console.log('send');
+        console.log(send_data);
+        /*$.ajax({
+
+            contentType:'multipart/form-data',
+            fileElementId: 'fulAvatar',
+           // data: JSON.stringify(send_data),
+           // contentType: 'application/x-www-form-urlencoded',
+            url: '/img',
+            type: 'post',
+            success: function (data) {
+                $("#upload_img").html(
+                        '<img src="' + data + '">'
+                );
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });*/
+
+    }
+
 
 </script>
-
 
 <% include footer.ejs%>

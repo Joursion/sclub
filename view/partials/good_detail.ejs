@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <% var id = ""; %>
-            <div class="col-lg-9 main-content">
+            <div class="col-md-9 col-ms-12 main-content">
                 <div class="good_detail">
                     <h1 class="good_name"> <%= good.name %> </h1>
                     <div class="show_good_seller"><span id="seller_name"><%= good.seller.name %></span>
@@ -14,17 +14,22 @@
                         <span class="glyphicon glyphicon-user"></span>&nbsp;<span id="good_star"><%= good.star || 0 %></span>
                     </div>
                     <div class="star_button">
-                        <% if (isStar == 1) { %>
-                        <button type="button" class="btn btn-info" id="star_btn" onclick="good_star()" value="取消收藏">取消收藏</button>
-                        <% } else { %>
-                        <button type="button" class="btn btn-info" id="star_btn" onclick="good_star()" value="收藏">收藏</button>
+                        <% if ($this.session.user) {%>
+                            <% if (isStar == 1) { %>
+                            <button type="button" class="btn btn-info" id="star_btn" onclick="good_star()" value="取消收藏">取消收藏</button>
+                            <% } else { %>
+                            <button type="button" class="btn btn-info" id="star_btn" onclick="good_star()" value="收藏">收藏</button>
+                            <% } %>
                         <% } %>
                     </div>
                     <div class="show_detail">
-                        <p>价格：　<%= good.prices %></p>
-                        <p>链接： <a href="<%= good.good_url %>" >点我</a></p>
-                        <p><%= good.content %></p>
+                        <p class="good_detail_price">价格：￥ <%= good.prices %></p>
+                        <p class="good_detail_content"><%= good.content %></p>
                         <% id = good._id; %>
+                    </div>
+
+                    <div class="show_good_img">
+                        <img src="<%= good.img_url%>" >
                     </div>
                 </div>
 
@@ -48,7 +53,7 @@
                     </div>
                     <div id="good_submit">
                         <% if ($this.session.user) { %>
-                        <textarea class="col-md-12 comment_edit" rows="7" id="good_content"></textarea>
+                        <textarea class="col-md-12 col-sm-12 comment_edit" rows="7" id="good_content"></textarea>
                         <br>
                         <button type="button" class="btn bg-primary" id="good_comment_submit">留言</button>
                         <% } else { %>
@@ -57,8 +62,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 side_bar">
-                <div class="part">
+            <div class="col-md-3 col-sm-12 side_bar">
+                <div class=" col-md-12 col-sm-12 part">
                     <div class="part_header">
                         发布者
                     </div>
@@ -68,7 +73,7 @@
 
                     </div>
                 </div>
-                <div class="part">
+                <div class=" col-md-12 col-sm-12 part">
                     <div class="part_header">
                         Starers
                     </div>
@@ -78,7 +83,7 @@
                         <% }); %>
                     </div>
                 </div>
-                <div class="part">
+                <div class=" col-md-12 col-sm-12 part">
                     <div class="part_header">
                         热门闲置
                     </div>
@@ -88,17 +93,11 @@
                         <% }); %>
                     </div>
                 </div>
-                <div class="part">
+                <div class="col-md-12 col-sm-12 part">
                     <div class="part_header">
                         相关
                     </div>
                     <div class="part_content">
-                        ni shuo ne
-                        ni shuo ne
-                        ni shuo ne
-                        ni shuo ne
-                        ni shuo ne
-                        ni shuo ne
                     </div>
                 </div>
             </div>
@@ -161,6 +160,4 @@
             })
         }
     }
-
-
 </script>

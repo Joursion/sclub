@@ -1,7 +1,20 @@
-/*activity 详情页布局　*/
-.col-md-8{
-    margin-right: 0;
+
+
+body{
+    box-sizing: border-box;
+    font-family: 'Helvetica Neue',Helvetica,Arial,'Hiragino Sans GB',STHeiti,'Microsoft YaHei','WenQuanYi Micro Hei',sans-serif;
 }
+
+body  .navbar-default{
+    margin-bottom: 0;
+}
+
+body .activity_detail, .about, .nav-pills, .content-wrap{
+    margin-top: 20px;
+}
+
+/*activity 详情页布局　*/
+
 
 .my_header{
     background-color: #f4f4f4;
@@ -118,20 +131,29 @@
     margin-top: 10px;
 }
 
-.side_bar .part{
+.side_bar {
+    position: absolute;
+}
+.side_bar:after{
+    clear: both;
+    content:"";
+}
+
+ .part{
     float: left;
     border-bottom: 10px;
     overflow: hidden;
+     min-width: 200px;
 }
 
-.side_bar .part .part_header{
-    width:255px;
+ .part .part_header{
+    width: auto;
     background: #f4f4f4;
     padding: 10px;
     border-radius: 7px;
 
 }
-.side_bar .part .part_content{
+ .part .part_content{
     width: 255px;
     padding: 10px;
     background: #ffffff;
@@ -139,20 +161,20 @@
     float: left;
 }
 
-.side_bar .part .part_content .btn-success {
+ .part .part_content .btn-success {
     margin-left: 10px;
 }
-.side_bar .part .part_content span{
+ .part .part_content span{
     margin-left: 10px;
 }
 
-.side_bar .part .part_content .tx_img{
+ .part .part_content .tx_img{
     display: inline-block;
     float: left;
     margin-left: 3px;
 }
 
-.side_bar .ad{
+ .ad{
     margin-bottom: 10px;
 }
 
@@ -195,9 +217,6 @@
     margin-top: 40px;
 }
 
-.content-good .col-md-3.side_bar{
-
-}
 
 .content-good .main-content .good_list{
     float: left;
@@ -224,6 +243,10 @@
 }
 
 
+.content-good .main-content .good_list .good-img img{
+    width:100px;
+    height: 100px;
+}
 /*good　详情页面*/
 
 .good{
@@ -258,6 +281,19 @@
     margin-top: 70px;
 }
 
+.good .main-content .good_detail .show_detail .good_detail_content{
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: bold;
+}
+
+.good .main-content .good_detail .show_detail .good_detail_price{
+    color: #7b0100;
+}
+
+.good .main-content .good_detail .show_good_img{
+    margin-top: 20px;
+}
+
 .good .main-content .star_button{
     margin-left: 20px;
 }
@@ -269,6 +305,7 @@
     padding: 0 10px;
     margin-left: 30px;
 }
+
 
 
 
@@ -330,3 +367,45 @@
     margin: auto;
     width: 1000px;
 }
+
+
+/* index css */
+
+.show_index .first{
+    /*background-image: url('../back2.jpg');;*/
+    background-color: #175086;
+    height: 500px;
+    background-position: 50% 50%;
+    display: block;
+    background-size: cover;
+    box-sizing: border-box;
+    position: relative;
+    text-align: center;
+    text-shadow: rgba(0,0,0,0.9) 0px 1px 0px;
+    padding-top: 200px;
+}
+
+.show_index .first .intro{
+    font-size: 30px;
+    color: #ffffff;
+}
+
+.show_index .sec{
+    background-color: #EEF2F5;
+    height: 500px;
+    background-position: 50% 50%;
+    display: block;
+    background-size: cover;
+    box-sizing: border-box;
+    position: relative;
+    text-align: center;
+    text-shadow: rgba(0,0,0,0.9) 0px 1px 0px;
+    padding-top: 200px;
+}
+
+.show_index .sec .logo-img img{
+    width: 640px;
+    height: 360px;
+
+}
+

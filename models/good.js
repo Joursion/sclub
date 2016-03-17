@@ -14,12 +14,13 @@ var GoodSchema = new Schema({
     create_at: {type: Date},
     update_at: {type: Date},
     name: {type: String},
-    prices: {type: Number},
+    prices: {type: String},
     good_url: {type: String},
     comment:{type: Number},
     pv: {type: Number},
     star: {type: Number},
-    tab:{type:String}
+    tab:{type:String},
+    img_url: {type: String}
 });
 
 

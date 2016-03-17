@@ -2,12 +2,12 @@
     <div class="container">
         <div class="rows">
             <% var id = ""; %>
-            <main class="col-md-9 main-content" >
+            <main class="col-md-9 col-sm-12 main-content" >
                 <!--显示activity 的详细信息-->
                 <div class="show_activity_detail">
-                    <h1> <%= activity.title %> </h1>
+                    <h1 id="activity_title"> <%= activity.title %> </h1>
                     <div class="show_user">
-                        <a href="/u/<%= activity.founder.name %>"><%= activity.founder.name %></a>
+                        <a href="/u/<%= activity.founder.name %>"><span id="activity_founder"><%= activity.founder.name %></span></a>
                         发布于<%= activity.create_date %>
                     </div>
                     <div class="show">
@@ -16,10 +16,12 @@
                         <span class="glyphicon glyphicon-user"></span> &nbsp;<span id="activity_join"><%= activity.join || 0%></span>
                     </div>
                     <div class="join_button">
-                        <% if (isJoin == 1) { %>
-                        <button type="button" class="btn btn-info" id="join_btn" onclick="activity_join()" value="退出">退出参加</button>
-                        <% } else { %>
-                        <button type="button" class="btn btn-info" id="join_btn" onclick="activity_join()" value="参加">参加</button>
+                        <% if ($this.session.user) {%>
+                            <% if (isJoin == 1) { %>
+                            <button type="button" class="btn btn-info" id="join_btn" onclick="activity_join()" value="退出">退出参加</button>
+                            <% } else { %>
+                            <button type="button" class="btn btn-info" id="join_btn" onclick="activity_join()" value="参加">参加</button>
+                            <% } %>
                         <% } %>
                     </div>
                     <br/>
@@ -54,7 +56,7 @@
                     </div>
                     <div id="activity_submit">
                         <% if ($this.session.user) { %>
-                            <textarea class="col-md-12 comment_edit" rows="7" id="activity_content"></textarea>
+                            <textarea class="col-md-12 col-sm-12 comment_edit" rows="7" id="activity_content"></textarea>
                             <br>
                             <button type="button" class="btn bg-primary" id="submit2"
                                     onclick="activity_submit()">留言</button>
@@ -65,28 +67,28 @@
                 </div>
 
             </main>
-            <div class="col-md-3 side_bar">
-                <div class="part">
+            <div class="col-md-3 col-sm-12 side_bar">
+                <div class="  col-sm-12 part">
                     <div class="part_header">
                         发布者
                     </div>
                     <div class="part_content">
-                        <img class="tx_img" src="http://www.gravatar.com/avatar/<%= activity.founder.tx_url %>?s=30&r=30&d=retro">
+                        <img class="tx_img" src="http://www.gravatar.com/avatar/<%= activity.founder.tx_url %>?s=30&r=x">
                         <a href="/u/<%= activity.founder.name %>"><span><%= activity.founder.name %></span></a>
                         <br/>
                     </div>
                 </div>
-                <div class="part">
+                <div class="  col-md-12 col-sm-12 part">
                     <div class="part_header">
                         Joiner
                     </div>
                     <div class="part_content">
                         <% joiners.forEach(function(joiner){ %>
-                            <a href="/u/<%= joiner.user.name %>"><img class="tx_img" src="http://www.gravatar.com/avatar/<%= joiner.user.tx_url %>?s=30&r=30&d=retro" title="<%= joiner.user.name %>"></a>　　　　　　　　　　　　
+                            <a href="/u/<%= joiner.user.name %>"><img class="tx_img" src="http://www.gravatar.com/avatar/<%= joiner.user.tx_url %>?s=30&d=retro" title="<%= joiner.user.name %>"></a>　　　　　　　　　　　　
                         <% }); %>
                     </div>
                 </div>
-                <div class="part">
+                <div class=" col-md-12 col-sm-12 part">
                     <div class="part_header">
                         热门活动
                     </div>
@@ -96,7 +98,7 @@
                         <% }); %>
                     </div>
                 </div>
-                <div class="part">
+                <div class=" col-md-12 col-sm-12 part">
                     <div class="part_header">
                         相关
                     </div>
@@ -109,8 +111,7 @@
                         ni shuo ne
                     </div>
                 </div>
-            </div>
-
+           </div>
         </div>
     </div>
 </section>
@@ -121,8 +122,11 @@
 
 
 <script>
+    //join and  add message
     function getJoinData() {
         var send_data = {};
+        send_data.activity_founder = $("#activity_founder").val();
+        send_data.activity_title= $("#activity_title").val();
         send_data.activity_id = $('#key1').val();
         return send_data;
     }
@@ -131,6 +135,8 @@
         var send_data = {};
         send_data.content = $("#activity_content").val();
         send_data.activity_id = $("#key1").val();
+        send_data.activity_founder = $("#activity_founder").val();
+        send_data.activity_title= $("#activity_title").val();
         return send_data;
     }
 
