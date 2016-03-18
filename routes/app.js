@@ -45,11 +45,8 @@ module.exports = function (app, router) {
         console.log(data);
         var UserInfo = yield $User.getUserByName(data.name);
         if (!UserInfo || (UserInfo.password !== data.password)) {
-
-            console.log(UserInfo.password);
-            console.log(data.password);
             this.flash = {error: '用户名或者密码错误！'};
-            return this.render('signin');
+            return this.redirect('/signin');
         }
 
         this.session.user = {
@@ -154,16 +151,9 @@ module.exports = function (app, router) {
     router.post('/activity_comment_submit', function *() {
         var data = this.request.body || {};
         data.user = this.session.user;
-        data.user.tx_url = this.session.user.tx_url;
+       // data.user.tx_url = this.session.user.tx_url;
         data.create_at = Date.now();
 
-        //生成Message
-        /*var message = {};
-        message.type = "回复了";
-        message.sender = this.session.user.name;
-        message.target =  "";
-        message.url = "";
-        message.create */
         var message = {
             type: "回复了你的活动",
             sender: this.session.user.name,
@@ -181,7 +171,9 @@ module.exports = function (app, router) {
             $Activity.incCommentById(data.activity_id),
             $Message.addMessage(message)
         ];
-        this.redirect('/activity');
+        this.redirect('back');
+        this.status = 200;
+        this.body = data;
     });
 
     //activity 参加
@@ -331,9 +323,10 @@ module.exports = function (app, router) {
         data.pv = 0;
         data.star = 0;
         data.comment = 0;
-        data.create_at = Date.now();
-        data.update_at = Date.now();
+        data.create_at = Date().now();
+        data.update_at = Date().now();
         yield $Good.addGood(data);
+
         this.redirect('/good/all/1');
 
     });
@@ -371,14 +364,18 @@ module.exports = function (app, router) {
         });
     });
 
-    router.get('/good_edit/:id', function *() {
+  /*  router.get('/good_edit/:id', function *() {
         var id = this.params.id;
+        var MessageCount = 0;
+        if (this.session.user) {
+            MessageCount = yield $Message.CountMyMessage(this.session.user.name);
+        }
         yield this.render('good_edit',{
-            good: $Good.getGoodById(id)
-
+            good: $Good.getGoodById(id),
+            messageCount: MessageCount
         });
     });
-
+*/
     router.post('/good_edit/:id', function *() {
         var id = this.params.id;
         var data = this.request.body;
@@ -391,7 +388,6 @@ module.exports = function (app, router) {
 
     router.post('/good_comment_submit', function *() {
         var all = this.request.body || {};
-        var turl = this.request.url;
         console.log(all);
         var data = {};
         data.content = all.content;
@@ -422,6 +418,8 @@ module.exports = function (app, router) {
         // this.redirect('activity/'+ data.activity_id);
         //this.redirect('/good/' + all.good_id);
         this.redirect('back');
+        this.status = 200;
+        this.body = data;
     });
 
     router.get('/u/:id', function *() {
@@ -442,8 +440,8 @@ module.exports = function (app, router) {
         }
     });
 
-    router.get('/message', function *() {
-        yield $Message.readMessage(this.session.user.name);
+    router.get('/message', function *() {/*
+        yield $Message.(this.session.user.name);*/
         yield this.render('message', {
             messages: $Message.getMessageByName(this.session.user.name),
             messageCount: 0

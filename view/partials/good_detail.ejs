@@ -5,8 +5,8 @@
             <div class="col-md-9 col-ms-12 main-content">
                 <div class="good_detail">
                     <h1 class="good_name"> <%= good.name %> </h1>
-                    <div class="show_good_seller"><span id="seller_name"><%= good.seller.name %></span>
-                        发布于<%= good.create_at %>
+                    <div class="show_good_seller"><span id="seller_name"><a href="/u/<%= good.seller.name %>"> <%= good.seller.name %></a></span>
+                        发布于<%= good.create_at.toString().substr(3,21) %>
                     </div>
                     <div class="show">
                         <span class="glyphicon glyphicon-comment"></span>&nbsp;<%= good.comment %>&nbsp;
@@ -42,24 +42,25 @@
                         <div class="show_user_img">
                             <img src="http://www.gravatar.com/avatar/<%= good_comment.user.tx_url%>?s=50&d=retro" class="img-circle" alt="Cinque Terre">
                         </div>
-                        <p class="comment-info"><%= good_comment.user.name %>　发布于　<span><%= good_comment.create_at %></span></p>
+                        <p class="comment-info"><%= good_comment.user.name %>　发布于　<span><%= good_comment.create_at.toString().substr(3,21) %></span></p>
                         <div class="one_comment">
                             <%= good_comment.content %>
                         </div>
                     </div>
                     <% }); %>
-                    <div class="content_submit_label">
-                        <label>我要回复</label>
-                    </div>
-                    <div id="good_submit">
-                        <% if ($this.session.user) { %>
-                        <textarea class="col-md-12 col-sm-12 comment_edit" rows="7" id="good_content"></textarea>
-                        <br>
-                        <button type="button" class="btn bg-primary" id="good_comment_submit">留言</button>
-                        <% } else { %>
-                        <p class="col-md-8">请<a href="/signin">登陆</a>或者<a href="/signup">注册</a>,发表评论 </p>
-                        <% } %>
-                    </div>
+
+                </div>
+                <div class="content_submit_label">
+                    <label>我要回复</label>
+                </div>
+                <div id="good_submit">
+                    <% if ($this.session.user) { %>
+                    <textarea class="col-md-12 col-sm-12 comment_edit" rows="7" id="good_content"></textarea>
+                    <br>
+                    <button type="button" class="btn bg-primary" id="good_comment_submit">留言</button>
+                    <% } else { %>
+                    <p class="col-md-8">请<a href="/signin">登陆</a>或者<a href="/signup">注册</a>,发表评论 </p>
+                    <% } %>
                 </div>
             </div>
             <div class="col-md-3 col-sm-12 side_bar">
@@ -127,9 +128,28 @@
     }
 
     $("#good_comment_submit").click(function(){
-        $.post('/good_comment_submit',getCommentData(), function (data) {
+        
+       /* $.post('/good_comment_submit',getCommentData(), function (data) {
             console.log(data);
-        });
+        });*/
+        var date = new Date().toString().sub(3,21);
+        $.ajax({
+            url: '/good_comment_submit',
+            type: 'post',
+            data: getCommentData(),
+            success: function (data) {
+                $(".show_good_comment").append("<div class='activity_show_comment'>" +
+                                "<div class='show_user_img'>" +
+                        "<img src='http://www.gravatar.com/avatar/" + data.user.tx_url + "?s=50&d=retro' class='img-circle' alt='tx'>"
+                        + "</div>" + "<p class='comment-info'>" + data.user.name + "   发布于   " + "<span>" + date + "</span>"
+                        +"</p>" + "<div class='one_comment'>" + data.content + "</div> </div>"
+                );
+                $("#good_content").val(" ");
+            },
+            error: function () {
+                alert('未知错误');
+            }
+        })
     });
 
     function good_star() {

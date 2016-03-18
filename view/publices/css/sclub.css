@@ -291,7 +291,14 @@ body .activity_detail, .about, .nav-pills, .content-wrap{
 }
 
 .good .main-content .good_detail .show_good_img{
+    max-width: 400px;
+    max-height: 200px;
     margin-top: 20px;
+}
+
+.good .main-content .good_detail .show_good_img img{
+    max-width: 400px;
+    max-height: 200px;
 }
 
 .good .main-content .star_button{

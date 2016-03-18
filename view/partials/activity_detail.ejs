@@ -8,7 +8,7 @@
                     <h1 id="activity_title"> <%= activity.title %> </h1>
                     <div class="show_user">
                         <a href="/u/<%= activity.founder.name %>"><span id="activity_founder"><%= activity.founder.name %></span></a>
-                        发布于<%= activity.create_date %>
+                        发布于<%= activity.create_date.toString().substr(3,21) %>
                     </div>
                     <div class="show">
                         <span class="glyphicon glyphicon-comment"></span> &nbsp;<%= activity.comment %>&nbsp;
@@ -45,27 +45,27 @@
                         <div class="show_user_img">
                             <img src="http://www.gravatar.com/avatar/<%= activity_comment.user.tx_url%>?s=50&d=retro" class="img-circle" alt="Cinque Terre">
                         </div>
-                        <p class="comment-info"><%= activity_comment.user.name %>　发布于　<span><%= activity_comment.create_at %></span></p>
+                        <p class="comment-info"><%= activity_comment.user.name %>　发布于　<span><%= activity_comment.create_at.toString().substr(3,21) %></span></p>
                         <div class="one_comment">
                             <%= activity_comment.content %>
                         </div>
                     </div>
                     <% }); %>
-                    <div class="content_submit_label">
-                        <label>我要回复</label>
-                    </div>
-                    <div id="activity_submit">
-                        <% if ($this.session.user) { %>
-                            <textarea class="col-md-12 col-sm-12 comment_edit" rows="7" id="activity_content"></textarea>
-                            <br>
-                            <button type="button" class="btn bg-primary" id="submit2"
-                                    onclick="activity_submit()">留言</button>
-                        <% } else { %>
-                            <p class="col-md-8">请<a href="/signin">登陆</a>或者<a href="/signup">注册</a>,发表评论 </p>
-                        <% } %>
-                    </div>
-                </div>
 
+                </div>
+                <div class="content_submit_label">
+                    <label>我要回复</label>
+                </div>
+                <div id="activity_submit">
+                    <% if ($this.session.user) { %>
+                    <textarea class="col-md-12 col-sm-12 comment_edit" rows="7" id="activity_content"></textarea>
+                    <br>
+                    <button type="button" class="btn bg-primary" id="submit2"
+                            onclick="activity_submit()">留言</button>
+                    <% } else { %>
+                    <p class="col-md-8">请<a href="/signin">登陆</a>或者<a href="/signup">注册</a>,发表评论 </p>
+                    <% } %>
+                </div>
             </main>
             <div class="col-md-3 col-sm-12 side_bar">
                 <div class="  col-sm-12 part">
@@ -103,12 +103,7 @@
                         相关
                     </div>
                     <div class="part_content">
-                        ni shuo ne
-                        ni shuo ne
-                        ni shuo ne
-                        ni shuo ne
-                        ni shuo ne
-                        ni shuo ne
+
                     </div>
                 </div>
            </div>
@@ -125,8 +120,8 @@
     //join and  add message
     function getJoinData() {
         var send_data = {};
-        send_data.activity_founder = $("#activity_founder").val();
-        send_data.activity_title= $("#activity_title").val();
+        send_data.activity_founder = $("#activity_founder").text();
+        send_data.activity_title= $("#activity_title").text();
         send_data.activity_id = $('#key1').val();
         return send_data;
     }
@@ -135,15 +130,35 @@
         var send_data = {};
         send_data.content = $("#activity_content").val();
         send_data.activity_id = $("#key1").val();
-        send_data.activity_founder = $("#activity_founder").val();
-        send_data.activity_title= $("#activity_title").val();
+        send_data.activity_founder = $("#activity_founder").text();
+        send_data.activity_title= $("#activity_title").text();
         return send_data;
     }
 
     function activity_submit() {
-        $.post('/activity_comment_submit',getCommentData(), function (data) {
+
+        var date = new Date().toString().sub(3,21);
+        $.ajax({
+            url: '/activity_comment_submit',
+            type: 'post',
+            data: getCommentData(),
+            success: function (data) {
+                $(".show_activity_comment").append("<div class='activity_show_comment'>" +
+                        "<div class='show_user_img'>" +
+                        "<img src='http://www.gravatar.com/avatar/" + data.user.tx_url + "?s=50&d=retro' class='img-circle' alt='tx'>"
+                        + "</div>" + "<p class='comment-info'>" + data.user.name + "   发布于   " + "<span>" + date + "</span>"
+                        +"</p>" + "<div class='one_comment'>" + data.content + "</div> </div>"
+                );
+                $("#good_content").val(" ");
+            },
+            error: function () {
+                alert('未知错误');
+            }
+        })
+
+       /* $.post('/activity_comment_submit',getCommentData(), function (data) {
             console.log(data);
-        });
+        });*/
     }
 
     function activity_join(){

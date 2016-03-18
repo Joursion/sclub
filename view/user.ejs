@@ -10,7 +10,7 @@
                     </div>
                     <div class="part_content">
                         <label><%= user.name %></label>
-                        <h4>注册于：<%= user.reg_date %></h4>
+                        <h4>注册于：<%= user.reg_date.toString().substr(3,21) %></h4>
                     </div>
                 </div>
             </div>
@@ -28,7 +28,7 @@
                         <% } else { %>
                         <div class="user_goods">
                             <% user_goods.forEach(function (good) { %>
-                            <h5><%= good.name %></h5>
+                            <h5><a href="/good/<%= good._id%>"><%= good.name %></a><%= good.create_at.toString().substr(3,21) %></h5>
                             <% }); %>
                         </div>
                         <% } %>
@@ -49,14 +49,14 @@
                         <% } else { %>
                         <div class="user_goods">
                             <% user_activities.forEach(function (activity) { %>
-                            <h5><%= activity.name %></h5>
+                            <h5><a href="/activity/<%= activity._id%>"><%= activity.name %> </a> </h5>
                             <% }); %>
                         </div>
                         <% } %>
                     </div>
                 </div>
             </div>
-            <div class="col-md-9">
+           <!-- <div class="col-md-9">
                 <div class="user_info">
                     <div class="part_header">
                         最近参加
@@ -76,7 +76,7 @@
                         <% } %>
                     </div>
                 </div>
-            </div>
+            </div>-->
         </div>
     </div>
 </div>
