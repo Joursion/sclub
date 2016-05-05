@@ -4,23 +4,18 @@
     <div class="container">
         <div class="row">
             <div class="col-md-9 col-sm-12 main-content">
-                <% activitys.forEach(function (activity) { %>
-                    <article class="post">
-                        <div class="post-title">
-                            <h2><a href="/activity/<%= activity._id%>"><%= activity.title %></a> </h2>
-                        </div>
-                        <div class="post-show">
-                            <span class="glyphicon glyphicon-comment"></span>&nbsp;<%= activity.comment %>&nbsp;
-                            <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<%= activity.pv %>&nbsp;
-                            <span class="glyphicon glyphicon-user"></span>&nbsp;<%= activity.join %>
-                        </div>
-                        <div class="post-content">
-                            <span><%= activity.content %></span>
-                        </div>
-                        <div class="post-meta">
-                            <p>最近更新&nbsp;<%= activity.update_date %></p>
-                        </div>
-                    </article>
+                <% jobs.forEach(function (job) { %>
+                <article class="post">
+                    <div class="post-title">
+                        <h2><a href="/job/<%= job._id%>"><%= job.title %></a> </h2>
+                    </div>
+                    <div class="post-content">
+                        <span><%= job.content %></span>
+                    </div>
+                    <div class="post-meta">
+                        <p>发布于&nbsp;<%= job.create_at %></p>
+                    </div>
+                </article>
                 <% }); %>
             </div>
 
@@ -35,8 +30,6 @@
                     <div class="part_content">
                         <img class="tx_img" src="http://www.gravatar.com/avatar/<%= $this.session.user.tx_url %>?s=30&r=30&d=retro">
                         <a href="/u/<%= $this.session.user.name %>"><span><%= $this.session.user.name %></span></a>
-
-                        <a class="btn btn-success" type="button" href="/activity_create">我要发布</a>
                     </div>
                 </div>
                 <% } else { %>
@@ -45,18 +38,18 @@
                         欢迎来到nbut.club
                     </div>
                     <div class="part_content">
-                        您可以选择　<a href="/signin"> 登陆 </a>或者<a href="/signup"> 注册 </a>
+                        您可以选择　<a href="/signin">登陆</a>或者<a href="/signup">注册</a>
                     </div>
                 </div>
                 <% } %>
 
                 <div class="col-md-12  col-sm-12 part">
                     <div class="part_header">
-                        热门活动
+                        热门Jobs
                     </div>
                     <div class="part_content">
-                        <% HotActivity.forEach(function(hot) { %>
-                        <p><a href="/activity/<%= hot._id %>"><%= hot.title %></a> </p>
+                        <% Hotjobs.forEach(function(hot) { %>
+                        <p><a href="/job/<%= hot._id %>"><%= hot.title %></a> </p>
                         <% }); %>
                     </div>
                 </div>
@@ -73,7 +66,5 @@
         </div>
     </div>
 </section>
-
-<% include partials/activity_pagination.ejs %>
 
 <% include footer.ejs %>

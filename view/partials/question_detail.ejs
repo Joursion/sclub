@@ -1,0 +1,133 @@
+<section class="question_detail">
+    <div class="container">
+        <div class="rows">
+            <% var id = ""; %>
+            <main class="col-md-9 col-sm-12 main-content" >
+                <!--显示question 的详细信息-->
+                <div class="show_question_detail">
+                    <h1 id="question_title"> <%= question.title %> </h1>
+                    <div class="show_user">
+                        <a href="/u/<%= question.founder.name %>"><span id="question_founder"><%= question.founder.name %></span></a>
+                        发布于<%= question.create_at.toString().substr(3,21) %>
+                    </div>
+                    <div class="show">
+                        <span class="glyphicon glyphicon-comment"></span> &nbsp;<%= question.comment %>&nbsp;
+                        <span class="glyphicon glyphicon-eye-open"></span> &nbsp;<%= question.pv %>&nbsp;
+                    </div>
+                    <br/>
+                    <hr>
+                    <div class="show_some">
+                        <p><%= question.content %></p>
+                    </div>
+                    <% id = question._id; %>
+                </div>
+
+                <!--显示question 的评论-->
+                <div class="show_question_comment">
+                    <!-- 新的注释-->
+                    <% question_comments.forEach(function (question_comment) { %>
+                    <!--显示一条评论-->
+                    <div class="question_show_comment ">
+                        <div class="show_user_img">
+                            <img src="http://www.gravatar.com/avatar/<%= question_comment.user.tx_url%>?s=50&d=retro" class="img-circle" alt="Cinque Terre">
+                        </div>
+                        <p class="comment-info"><%= question_comment.user.name %>　发布于　<span><%= question_comment.create_at.toString().substr(3,21) %></span></p>
+                        <div class="one_comment">
+                            <%= question_comment.content %>
+                        </div>
+                    </div>
+                    <% }); %>
+
+                </div>
+                <div class="content_submit_label">
+                    <label>我要回复</label>
+                </div>
+                <div id="question_submit">
+                    <% if ($this.session.user) { %>
+                    <textarea class="col-md-12 col-sm-12 comment_edit" rows="7" id="question_content"></textarea>
+                    <br>
+                    <button type="button" class="btn bg-primary" id="submit2"
+                            onclick="question_submit()">留言</button>
+                    <% } else { %>
+                    <p class="col-md-8">请<a href="/signin">登陆</a>或者<a href="/signup">注册</a>,发表评论 </p>
+                    <% } %>
+                </div>
+            </main>
+            <div class="col-md-3 col-sm-12 side_bar">
+                <div class="  col-sm-12 part">
+                    <div class="part_header">
+                        发布者
+                    </div>
+                    <div class="part_content">
+                        <img class="tx_img" src="http://www.gravatar.com/avatar/<%= question.founder.tx_url %>?s=30&r=x">
+                        <a href="/u/<%= question.founder.name %>"><span><%= question.founder.name %></span></a>
+                        <br/>
+                    </div>
+                </div>
+                <div class=" col-md-12 col-sm-12 part">
+                    <div class="part_header">
+                        热门问答
+                    </div>
+                    <div class="part_content">
+                        <% Hotquestion.forEach(function(hot) { %>
+                        <p><a href="/question/<%= hot._id %>"><%= hot.title %></a> </p>
+                        <% }); %>
+                    </div>
+                </div>
+                <div class=" col-md-12 col-sm-12 part">
+                    <div class="part_header">
+                        相关
+                    </div>
+                    <div class="part_content">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<form class="ll" method="post">
+    <input type="hidden" id="key1" value="<%= id %>">
+</form>
+
+
+<script>
+    //join and  add message
+
+    function getCommentData(){
+        var send_data = {};
+        send_data.content = $("#question_content").val();
+        send_data.question_id = $("#key1").val();
+        send_data.question_founder = $("#question_founder").text();
+        send_data.question_title= $("#question_title").text();
+        return send_data;
+    }
+
+    function question_submit() {
+
+        var date = new Date().toString().sub(3,21);
+        $.ajax({
+            url: '/question_comment_submit',
+            type: 'post',
+            data: getCommentData(),
+            success: function (data) {
+                $(".show_question_comment").append("<div class='question_show_comment'>" +
+                        "<div class='show_user_img'>" +
+                        "<img src='http://www.gravatar.com/avatar/" + data.user.tx_url + "?s=50&d=retro' class='img-circle' alt='tx'>"
+                        + "</div>" + "<p class='comment-info'>" + data.user.name + "   发布于   " + "<span>" + date + "</span>"
+                        +"</p>" + "<div class='one_comment'>" + data.content + "</div> </div>"
+                );
+                $("#good_content").val(" ");
+            },
+            error: function () {
+                alert('未知错误');
+            }
+        })
+
+        /* $.post('/question_comment_submit',getCommentData(), function (data) {
+         console.log(data);
+         });*/
+    }
+
+</script>

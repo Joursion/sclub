@@ -1,0 +1,53 @@
+<section class="job_detail">
+    <div class="container">
+        <div class="rows">
+            <% var id = ""; %>
+            <main class="col-md-9 col-sm-12 main-content" >
+                <!--显示job 的详细信息-->
+                <div class="show_job_detail">
+                    <h1 id="job_title"> <%= job.title %> </h1>
+                    <div class="show_user">
+                        发布于<%= job.create_at.toString().substr(3,21) %>
+                    </div>
+                    <div class="show">
+                        <span class="glyphicon glyphicon-eye-open"></span> &nbsp;<%= job.pv %>&nbsp;
+                    </div>
+                    <br/>
+                    <hr>
+                    <div class="show_some">
+                        <%= job.content %>
+                    </div>
+                    <% id = job._id; %>
+                </div>
+            </main>
+            <div class="col-md-3 col-sm-12 side_bar">
+                <div class="  col-sm-12 part">
+                    <div class="part_header">
+                        发布者
+                    </div>
+                    <div class="part_content">
+                        系统管理员
+                    </div>
+                </div>
+                <div class=" col-md-12 col-sm-12 part">
+                    <div class="part_header">
+                        热门Jobs
+                    </div>
+                    <div class="part_content">
+                        <% Hotjobs.forEach(function(hot) { %>
+                        <p><a href="/job/<%= hot._id %>"><%= hot.title %></a> </p>
+                        <% }); %>
+                    </div>
+                </div>
+                <div class=" col-md-12 col-sm-12 part">
+                    <div class="part_header">
+                        相关
+                    </div>
+                    <div class="part_content">
+                        该信息来自nbut学工网
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

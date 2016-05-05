@@ -1,0 +1,25 @@
+<% include header.ejs %>
+
+<div class="good_create">
+    <div class="container">
+        <div class="row">
+            <form class="form-horizontal" role="form"   method="post" action="/job_create">
+                <div class="form-group">
+                    <label class="col-md-2 col-sm-3 input-lg">标题</label>
+                    <div class="col-md-4 col-sm-9 input-group-lg">
+                        <input id="name" name="title" type="text" class="form-control" >
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-2 col-sm-3 input-lg">具体内容</label>
+                    <textarea class="col-md-6 col-sm-9 form-control" rows="6" name="content"></textarea>
+                </div>
+                <input type="submit" class="btn btn-default btn-lg" id="up" value="发布Job">
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<% include footer.ejs%>

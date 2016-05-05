@@ -3,39 +3,44 @@
   "version": "0.0.1",
   "description": "a club for transform",
   "dependencies": {
+    "co-body": "*",
+    "co-busboy": "*",
     "co-cache": "2.0.1",
     "co-ejs": "*",
     "config-lite": "0.2.0",
+    "formidable": "latest",
+    "gravatar": "*",
     "koa": "1.1.2",
+    "koa-body": "*",
     "koa-bodyparser": "2.0.1",
-    "koa-router": "*",
+    "koa-errorhandler": "0.1.1",
     "koa-flash": "1.0.0",
     "koa-frouter": "0.3.2",
-    "koa-errorhandler": "0.1.1",
     "koa-generic-session": "1.10.0",
     "koa-generic-session-mongo": "0.2.4",
     "koa-gzip": "0.1.0",
     "koa-logger": "1.3.0",
+    "koa-router": "*",
     "koa-router-cache": "0.3.0",
     "koa-scheme": "2.2.0",
     "koa-static-cache": "3.1.3",
-    "merge-descriptors": "1.0.0",
-    "mongoose": "4.2.9",
-    "validator": "4.4.0",
-    "nodemailer": "2.1.0",
     "markdown-it": "*",
-    "gravatar": "*",
+    "merge-descriptors": "1.0.0",
     "moment": "*",
-    "formidable": "latest",
-    "qn":"*",
-    "koa-body":"*",
-    "co-body":"*",
-    "node-uuid":"*"
+    "mongodb": "^2.1.18",
+    "mongoose": "^4.4.0",
+    "node-uuid": "*",
+    "nodemailer": "0.7.1",
+    "qn": "*",
+    "validator": "4.4.0"
   },
   "engines": {
     "node": ">=4"
   },
   "devDependencies": {
-    "gulp": "^3.9.1"
+    "gulp": "^3.9.1",
+    "gulp-browserify": "*",
+    "gulp-uglify": "*",
+    "gulp-minify-css": "*"
   }
 }

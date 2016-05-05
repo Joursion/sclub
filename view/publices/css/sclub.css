@@ -13,6 +13,10 @@ body .activity_detail, .about, .nav-pills, .content-wrap{
     margin-top: 20px;
 }
 
+.container{
+    margin-top: 10px;
+}
+
 /*activity 详情页布局　*/
 
 
@@ -143,7 +147,7 @@ body .activity_detail, .about, .nav-pills, .content-wrap{
     float: left;
     border-bottom: 10px;
     overflow: hidden;
-     min-width: 200px;
+
 }
 
  .part .part_header{
@@ -188,7 +192,7 @@ body .activity_detail, .about, .nav-pills, .content-wrap{
     margin-bottom: 20px;
     padding: 20px;
     overflow: hidden;
-    background-color: #fbfbfb;
+    background-color: #e5e5e5;
     border-radius: 5px;
 }
 
@@ -244,7 +248,7 @@ body .activity_detail, .about, .nav-pills, .content-wrap{
 
 
 .content-good .main-content .good_list .good-img img{
-    width:100px;
+    width:140px;
     height: 100px;
 }
 /*good　详情页面*/
@@ -416,3 +420,144 @@ body .activity_detail, .about, .nav-pills, .content-wrap{
 
 }
 
+/*job 详情页*/
+.job_detail {
+    margin-top: 30px;
+    overflow: hidden;
+    position: relative;
+}
+
+.job_detail .main-content{
+    margin-bottom: 50px;
+
+}
+.job_detail .main-content .show_job_detail{
+    border-radius: 10px 10px;
+    padding: 10px;
+    background-color: #f6f6f6;
+    margin-bottom: 50px;
+}
+
+.job_detail .main-content .show_user{
+    color: #3e3939;
+    float: left;
+}
+
+.job_detail .main-content .show{
+    margin-left: 20px;
+    float: left;
+    color: #717171;
+}
+
+.job_detail .main-content .join_button{
+    margin-left: 20px;
+}
+.job_detail .main-content .join_button .btn-info{
+    padding: 0 10px;
+    margin-left: 30px;
+}
+.job_detail .main-content .join_button .btn-success{
+    padding: 0 10px;
+    margin-left: 30px;
+}
+
+/* question pages*/
+
+.question_detail {
+    margin-top: 30px;
+}
+
+
+.question_detail {
+
+    overflow: hidden;
+    position: relative;
+}
+
+.question_detail .main-content{
+    margin-bottom: 50px;
+
+}
+.question_detail .main-content .show_question_detail{
+    border-radius: 10px 10px;
+    padding: 10px;
+    background-color: #f6f6f6;
+    margin-bottom: 50px;
+}
+
+.question_detail .main-content .show_user{
+    color: #3e3939;
+    float: left;
+}
+
+.question_detail .main-content .show{
+    margin-left: 20px;
+    float: left;
+    color: #717171;
+}
+
+.question_detail .main-content .join_button{
+    margin-left: 20px;
+}
+.question_detail .main-content .join_button .btn-info{
+    padding: 0 10px;
+    margin-left: 30px;
+}
+.question_detail .main-content .join_button .btn-success{
+    padding: 0 10px;
+    margin-left: 30px;
+}
+
+.question_detail .main-content .question_show_comment{
+    padding-top: 10px;
+    margin-bottom: 3px;
+    overflow: hidden;
+}
+.question_show_comment .comment-info{
+    float: left;
+    padding-top: 3px;
+    padding-left: 20px;
+    color: #c0c0c0;
+}
+.question_show_comment .one_comment{
+    margin-top:30px;
+    margin-left: 53px;
+    display: block;
+    color: #333;
+    padding-left: 15px;
+    padding-top: 5px;
+    padding-bottom: 10px;
+}
+
+.question_show_comment .show_user_img{
+    width:53px;
+    height: 53px;
+    margin-right: 0;
+    float: left;
+}
+.question_show_comment .comment-info{
+    float: left;
+    padding-top: 3px;
+    padding-left: 10px;
+    color: #c0c0c0;
+}
+
+.question_show_comment{
+    padding: 15px 0;
+    border-bottom:1px solid #fcf8e3;
+    margin-top: 5px;
+    font-size:16px;
+}
+.question_comment .form-control{
+    margin-top: 10px;
+    resize: none;
+    border: 0;
+    line-height: 2em;
+    outline:none;
+    -webkit-user-select: none;
+}
+
+.show_question_detail{
+    border-bottom: 40px solid #ffffff;
+    padding-bottom: 20px;
+}

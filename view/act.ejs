@@ -1,0 +1,8 @@
+<% include header.ejs%>
+
+<form action="/act" method="post">
+    <input type="hidden" name="user" value="<%= act.user%>">
+    <input type="hidden" name="content" value="<%= act.content%>">
+    <button type="submit">激活</button>
+</form>
+<% include footer.ejs%>

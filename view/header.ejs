@@ -28,14 +28,14 @@
             <ul class="nav navbar-nav">
                 <li><a href="/good/all/1">闲置</a></li>
                 <li><a href="/activity/p/1">活动</a></li>
-                <li><a href="/discovery">发现</a></li>
-                <li><a href="/ask">你答</a></li>
+                <li><a href="/q">你答</a></li>
+                <li><a href="/job">Jobs</a> </li>
             </ul>
             <form class="navbar-form navbar-left" role="search">
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="Search">
                 </div>
-                <button type="submit" class="btn btn-default">Submit</button>
+                <button type="submit" class="btn btn-default">嗖一下.</button>
             </form>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="/about">关于</a></li>
@@ -63,4 +63,15 @@
         </div>
     </div>
 </nav>
+
+<% if ($this.flash && $this.flash.success) { %>
+<div class="flash">
+    <div class="ui green message"><i class="close icon"></i><%= $this.flash.success %></div>
+</div>
+<% } %>
+<% if ($this.flash && $this.flash.error) { %>
+<div class="flash">
+    <div class="ui red message"><i class="close icon"></i><%= $this.flash.error %></div>
+</div>
+<% } %>
 

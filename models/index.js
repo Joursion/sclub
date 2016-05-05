@@ -20,3 +20,7 @@ exports.Join = require('./join');
 exports.GoodComment = require('./good_comment');
 exports.Star = require('./star');
 exports.Message = require('./message');
+exports.Ug = require('./ug');
+exports.Job = require('./job');
+exports.Question = require('./question');
+exports.QuestionComment = require('./question_comment');

@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12 col-sm-12">
-
+                <button class="btn-info" id="read_submit" onclick="has_read()"></button>
                 <% var MessageLength = messages.lenth; %>
                 <% if (MessageLength == 0) { %>
                 <div class="myMessage">
@@ -14,7 +14,7 @@
                 <% } else { %>
                 <% messages.forEach(function (message) { %>
                 <div class="myMessage">
-                    <p><%= message.sender %>das <%= message.type%>
+                    <p><%= message.sender %> <%= message.type%>
                         <a href="<%= message.url %>" > <%= message.content%> </a>
                         <%= message.create_at %>
                     </p>
@@ -26,5 +26,21 @@
         </div>
     </div>
 </div>
+
+<script>
+    function has_read(){
+        fetch('/read_message',{
+            method:'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                all: "all",
+                name: "123"
+            })
+        }).catch(e => console.log('read_message error',e));
+    }
+</script>
 
 <% include footer.ejs%>
