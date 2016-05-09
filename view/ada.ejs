@@ -5,26 +5,25 @@
 <div class="container">
     <div class="row">
         <% include partials/admin.ejs %>
-        <setion class="col-md-8 col-sm-12 admin_u">
-            <% users.forEach(function (user) { %>
-            <div class="user">
-                用户:  <a href="/u/<% user.name %>"><%= user.name %> </a>
-                注册时间:  <%= user.reg_date %>
+        <section class="col-md-8 col-sm-12 admin_activity">
+            <% activities.forEach(function (activity) { %>
+            <div class="activitiy">
+                活动标题:  <a href="/activity/<% activity._id %>"><%= activity.title %> </a>
+                发布时间:  <%= activity.create_date %>
                 <div class="dropdown option">
                     <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                         操作
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                        <li><a href="#">删除账号</a></li>
-                        <li><a href="#">禁言</a></li>
-                        <li><a href="#">设为管理员</a></li>
-                        <li><a href="#">解除管理员</a></li>
+                        <li><a href="#">删除该活动</a></li>
+                        <li><a href="#">设置结束</a></li>
+                        <li><a href="#">编辑</a></li>
                     </ul>
                 </div>
             </div>
             <% }); %>
-        </setion>
+        </section>
     </div>
 </div>
 

@@ -17,8 +17,8 @@ var messageSchema = new Schema({
     sender: {type: String},
     target: {type: String},
     url: {type: String},
-    create_at: {type: Date, required: true},
-    has_read: {type: Boolean, required: true}
+    create_at: {type: Date, required: true, default:Date.now()},
+    has_read: {type: Boolean, required: true, default : false}
 });
 
 messageSchema.index({target: 1});

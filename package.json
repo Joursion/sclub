@@ -31,6 +31,7 @@
     "mongoose": "^4.4.0",
     "node-uuid": "*",
     "nodemailer": "0.7.1",
+    "qiniu": "^6.1.11",
     "qn": "*",
     "validator": "4.4.0"
   },

@@ -66,12 +66,18 @@
 
 <% if ($this.flash && $this.flash.success) { %>
 <div class="flash">
-    <div class="ui green message"><i class="close icon"></i><%= $this.flash.success %></div>
+    <div class="alert alert-success" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <%= $this.flash.success %>
+    </div>
 </div>
 <% } %>
 <% if ($this.flash && $this.flash.error) { %>
 <div class="flash">
-    <div class="ui red message"><i class="close icon"></i><%= $this.flash.error %></div>
+    <div class="alert alert-danger" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <%= $this.flash.error %>
+    </div>
 </div>
 <% } %>
 

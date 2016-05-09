@@ -1,35 +1,60 @@
 
 
-<!--<footer class="main-footer">
+<footer class="main-footer">
     <div class="container">
         <div class="row">
             <div class="col-md-4">
                 <div class="widget">
                     <h4>联系</h4>
+                    <strong>e-mail:  </strong>joursion@126.com
                 </div>
 
             </div>
             <div class="col-md-4">
-
+                <div class="widget">
+                    <h4>友情链接</h4>
+                    <strong><a href="http://www.cnodejs.org">cnode社区</a> </strong>
+                    <strong><a href="http://react-china.org">react社区</a> </strong>
+                </div>
             </div>
             <div class="col-md-4">
-
+                <div class="widget">
+                    <h4>关于</h4>
+                    本网站未备案,仅供测试学习
+                </div>
             </div>
+
         </div>
     </div>
-</footer>-->
+</footer>
 
-<link type="text/css" href="./publices/css/club.css">
+<link type="text/css" href="/css/sclub.css">
 <link type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css"
       rel="stylesheet">
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
-
+<script type="text/javascript" src="/js/sclub.js"></script>
 <script>
     $(function () {
         $(".dropdown-toggle").dropdown();
-    })
+    });
+
+    $(function(){
+        function footerPosition(){
+            $(".main-footer").removeClass("fixed-bottom");
+            var contentHeight = document.body.scrollHeight,//网页正文全文高度
+                    winHeight = window.innerHeight;//可视窗口高度，不包括浏览器顶部工具栏
+            if(!(contentHeight > winHeight)){
+                //当网页正文高度小于可视窗口高度时，为footer添加类fixed-bottom
+                $("footer").addClass("fixed-bottom");
+            } else {
+                $("footer").removeClass("fixed-bottom");
+            }
+        }
+        footerPosition();
+        $(window).resize(footerPosition);
+    });
 </script>
 
 </body>

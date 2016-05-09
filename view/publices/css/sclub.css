@@ -561,3 +561,24 @@ body .activity_detail, .about, .nav-pills, .content-wrap{
     border-bottom: 40px solid #ffffff;
     padding-bottom: 20px;
 }
+
+/*footer*/
+.main-footer{
+    background-color: #ffffff;
+    height: 200px;
+}
+
+.main-footer .container{
+    padding-top: 100px;
+}
+.fixed-bottom {position: fixed;bottom: 0;width:100%;}
+
+/* admin pages*/
+
+.admin_u{
+    margin: auto;
+}
+
+.admin_u .user {
+    margin-top: 10px;
+}

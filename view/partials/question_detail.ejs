@@ -95,39 +95,6 @@
 <script>
     //join and  add message
 
-    function getCommentData(){
-        var send_data = {};
-        send_data.content = $("#question_content").val();
-        send_data.question_id = $("#key1").val();
-        send_data.question_founder = $("#question_founder").text();
-        send_data.question_title= $("#question_title").text();
-        return send_data;
-    }
 
-    function question_submit() {
-
-        var date = new Date().toString().sub(3,21);
-        $.ajax({
-            url: '/question_comment_submit',
-            type: 'post',
-            data: getCommentData(),
-            success: function (data) {
-                $(".show_question_comment").append("<div class='question_show_comment'>" +
-                        "<div class='show_user_img'>" +
-                        "<img src='http://www.gravatar.com/avatar/" + data.user.tx_url + "?s=50&d=retro' class='img-circle' alt='tx'>"
-                        + "</div>" + "<p class='comment-info'>" + data.user.name + "   发布于   " + "<span>" + date + "</span>"
-                        +"</p>" + "<div class='one_comment'>" + data.content + "</div> </div>"
-                );
-                $("#good_content").val(" ");
-            },
-            error: function () {
-                alert('未知错误');
-            }
-        })
-
-        /* $.post('/question_comment_submit',getCommentData(), function (data) {
-         console.log(data);
-         });*/
-    }
 
 </script>

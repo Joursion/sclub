@@ -29,6 +29,7 @@ var uuid = require('node-uuid');
 
 var a_mail = require('./sendmail');
 var md5 = require('./md5');
+var msg = require('./notify');
 /*
 var multer = require('koa-multer');
 var upload = multer({dest: 'tmp/'});*/
@@ -113,18 +114,13 @@ module.exports = function (app, router) {
     router.get('/a/:user/:ac', function *() {
         var user = this.params.user;
         var ac = this.params.ac;
-        console.log(user);
-        console.log(ac);
         var UserExit =  yield $Ug.getStatus(user);
         console.log(UserExit);
         if ( ! UserExit) {
             //this.flash = {error: "出现错误，稍后重试"};
             console.log("error");
         }
-        console.log(UserExit.status);
-        console.log(UserExit.content);
         if(UserExit.status == 0 && ac == UserExit.content) {
-            console.log("ds");
             yield [
                 $User.updateState(user),
                 $Ug.removeU(user)
@@ -136,7 +132,6 @@ module.exports = function (app, router) {
                 tx_url: data.tx_url
             };
             console.log('激活成功');
-
             this.redirect('/');
         }
     });
@@ -179,10 +174,7 @@ module.exports = function (app, router) {
         var join = 0;
         if (st.length == 0) {
             join = 0;
-            console.log(st);
-            console.log('join' + join);
         } else {
-            console.log('join');
             join = 1;
         }
 
@@ -207,6 +199,7 @@ module.exports = function (app, router) {
        // data.user.tx_url = this.session.user.tx_url;
         data.create_at = Date.now();
 
+        if (data.activity_founder !== data.user.name)
         var message = {
             type: "回复了你的活动",
             sender: this.session.user.name,
@@ -217,8 +210,6 @@ module.exports = function (app, router) {
             create_at : Date.now()
         };
 
-        console.log(data);
-        console.log(message);
         yield [
             $ActivityComment.addActivityComment(data),
             $Activity.incCommentById(data.activity_id),
@@ -234,7 +225,6 @@ module.exports = function (app, router) {
         var data = this.request.body;
         data.user = this.session.user;
         data.tx_url = this.session.tx_url;
-        console.log(data);
         yield [
             $Join.addJoin(data),
             $Activity.incJoinById(data.activity_id)
@@ -297,7 +287,7 @@ module.exports = function (app, router) {
     });
 
     //activity 修改
-    router.get('/activity_edit/:id', function *() {
+    /*router.get('/activity_edit/:id', function *() {
         var id = this.params.id;
         var MessageCount = 0;
         if (this.session.user) {
@@ -307,9 +297,9 @@ module.exports = function (app, router) {
             activity: $Activity.getActivityById(id),
             messageCount : MessageCount
         });
-    });
+    });*/
 
-    router.post('/activity_edit/:id', function *() {
+   /* router.post('/activity_edit/:id', function *() {
         var id = this.params.id;
         var data = this.request.body;
         data.update_date = Date.now();
@@ -317,7 +307,7 @@ module.exports = function (app, router) {
         yield $Activity.editActivity(id, data);
         this.flash = {success: '修改活动成功'};
         this.redirect('/activity/'+ id);
-    });
+    });*/
 
     //activity 删除
     router.post('/activity_del', function *() {
@@ -396,9 +386,7 @@ module.exports = function (app, router) {
         if (st.length == 0) {
             star = 0;
             console.log(st);
-            console.log('star' + star);
         } else {
-            console.log('star');
             star = 1;
         }
 
@@ -429,7 +417,7 @@ module.exports = function (app, router) {
         });
     });
 */
-    router.post('/good_edit/:id', function *() {
+   /* router.post('/good_edit/:id', function *() {
         var id = this.params.id;
         var data = this.request.body;
         data.update_at = Date.now();
@@ -437,7 +425,7 @@ module.exports = function (app, router) {
         yield $Good.editGood(id, data);
         this.flash = {success: '修改商品成功'};
         this.redirect('/good/' + id);
-    });
+    });*/
 
     router.post('/good_comment_submit', function *() {
         var all = this.request.body || {};
@@ -539,9 +527,9 @@ module.exports = function (app, router) {
 
         /*使用qiniu*/
         var qiniu = require("qiniu");
-        qiniu.conf.ACCESS_KEY = 'qgEdPE_-N9w0Ln_ckceM6B1PoJhl0-BCkTnuQKre';
-        qiniu.conf.SECRET_KEY = 'QXemEA4LSNpywF3BiUNYkID5L0ur3-dfKYeVrr8N';
-        var bucket = 'nbut-club';
+        qiniu.conf.ACCESS_KEY = '';
+        qiniu.conf.SECRET_KEY = '';
+        var bucket = '';
         var key = uuid.v4() + '.jpg';
         var cbdata;
         //构建上传策略函数
@@ -574,8 +562,8 @@ module.exports = function (app, router) {
   /*  router.post('/img', upload.single(''), function *() {
 
     })*/
-        
-        
+
+
     router.post('/star', function *(){
         var data = this.request.body;
         data.user = this.session.user;
@@ -739,25 +727,12 @@ module.exports = function (app, router) {
             $QuestionComment.addQuestionComment(data),
             $Question.incCommentById(data.question_id)
         ];
-        //如果操作的不是自己的，创建新的消息，插入数据。
-        /*if (seller.name != this.session.user.name) {
-            var message = {};
-            message.sender = this.session.user.name;
-            message.target = seller;
-            message.type = "回复了你的闲置";
-            message.content = all.good_name;
-            message.url = "/good/" + all.good_id;
-            message.create_at = Date.now();
-            message.has_read = false;
-            console.log(message);
-            yield $Message.addMessage(message);
-        }*/
-        // this.redirect('activity/'+ data.activity_id);
-        //this.redirect('/good/' + all.good_id);
         this.redirect('back');
         this.status = 200;
         this.body = data;
     });
+
+    // admin  pages
 
     router.get('/admin', function *() {
         yield this.render('admin',{
@@ -765,30 +740,39 @@ module.exports = function (app, router) {
         })
     });
 
-    router.get('/admin/u', function *() {
+    router.get('/admin_u', function *() {
+        var users = yield $User.adminGet();
         yield this.render('adu',{
             messageCount: 0,
-            users: $User.adminGet()
+            users: users
         })
     });
 
-    router.get('/admin/ask', function *() {
+
+    router.get('/admin_ask', function *() {
         yield this.render('adas',{
             messageCount: 0
         })
     });
 
-    router.get('/admin/activity', function *() {
+    router.get('/admin_activity', function *() {
         yield this.render('ada',{
             messageCount: 0,
             activities: $Activity.adminGet()
         })
     });
 
-    router.get('/admin/job', function *() {
+    router.get('/admin_job', function *() {
         yield this.render('adj',{
             messageCount: 0,
             jobs: $Job.adminGet()
+        })
+    });
+
+    router.get('/admin_ug', function *() {
+        yield this.render('adug',{
+            messageCount: 0
+            //: $Job.adminGet()
         })
     });
 
@@ -796,5 +780,3 @@ module.exports = function (app, router) {
         .use(router.routes())
         .use(router.allowedMethods());
 };
-
-////www.gravatar.com/avatar/f920253329292676f9afa983d01ac62e?s=100&r=x&d=retro
