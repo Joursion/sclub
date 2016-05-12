@@ -12,20 +12,22 @@ a school-club appliction using  node.js ,  run at   http://nbut.club:3000   for 
 1. cloen项目 git clone https://github.com/Joursion/sclub.git
 2. 进入目录 cd sclub 
 3. 安装依赖 npm install
-4. 设置参数 setting the mongoose in config/default , router/sendmail.js , qiniu 等.
-5. 运行测试 npm run
+4. 设置参数 setting the mongoose in config/default , router/sendmail.js , routes/config 等.
+5. 运行测试 npm start
 
 #Photoes
--activity page
+- activity page
 ![activity page](https://raw.githubusercontent.com/Joursion/Sclub/master/show_img/1.png)
 
--goods page
+- goods page
 ![goods page](https://raw.githubusercontent.com/Joursion/Sclub/master/show_img/2.png)
 
--question page
+- question page
 ![question page](https://raw.githubusercontent.com/Joursion/Sclub/master/show_img/3.png)
 
 #File tree
+
+```
 ├── app.js
 ├── bin
 ├── config
@@ -137,3 +139,4 @@ a school-club appliction using  node.js ,  run at   http://nbut.club:3000   for 
     └── user.ejs
 
 
+```

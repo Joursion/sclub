@@ -28,6 +28,26 @@ module.exports = {
         "request": {
             "session": checkLogin
         }
+    },
+    "GET /admin":{
+        "request":{
+            "session": checkLogin
+        }
+    },
+    "GET /activity_create":{
+         "request":{
+            "session": checkLogin
+        }
+    },
+    "GET /good_create":{
+         "request":{
+            "session": checkLogin
+        }
+    },
+    "GET /question_create":{
+         "request":{
+            "session": checkLogin
+        }
     }
 };
 

@@ -2,6 +2,7 @@
   "name": "sclub",
   "version": "0.0.1",
   "description": "a club for transform",
+  "author":"joursion",
   "dependencies": {
     "co-body": "*",
     "co-busboy": "*",
@@ -34,6 +35,14 @@
     "qiniu": "^6.1.11",
     "qn": "*",
     "validator": "4.4.0"
+  },
+  "main" : "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "respository": {
+    "type": "git",
+    "url": "https://github.com/Joursion/sclub.git"
   },
   "engines": {
     "node": ">=4"

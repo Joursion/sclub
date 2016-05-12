@@ -16,7 +16,6 @@ gulp.task('js', function () {
     .pipe(gulp.dest('./dest'));
 });
 
-
 gulp.task('css auto', function () {
     gulp.watch('./view/publices/css/*.css', ['css']);
 });
@@ -24,8 +23,5 @@ gulp.task('css auto', function () {
 gulp.task('js auto', function () {
     gulp.watch('./view/publices/js/*.js', ['js']);
 });
-
-
-
 
 gulp.task('default',['css', 'css auto', 'js', 'js auto']);

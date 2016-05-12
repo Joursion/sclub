@@ -1,7 +1,6 @@
 /**
  * Created by m on 16-2-22.
  */
-
 var Models = require('../lib/core');
 var $Activity = Models.$Activity;
 var $ActivityComment = Models.$ActivityComment;
@@ -16,7 +15,6 @@ var $Job = Models.$Job;
 var $Question = Models.$Question;
 var $QuestionComment = Models.$QuestionComment;
 
-
 /*测试代码片段*/
 var formidable = require('formidable');
 var qn = require('qn');
@@ -30,6 +28,8 @@ var uuid = require('node-uuid');
 var a_mail = require('./sendmail');
 var md5 = require('./md5');
 var msg = require('./notify');
+var isAdmin = require('./function').isAdmin;
+var config = require('./config').default;
 /*
 var multer = require('koa-multer');
 var upload = multer({dest: 'tmp/'});*/
@@ -527,9 +527,9 @@ module.exports = function (app, router) {
 
         /*使用qiniu*/
         var qiniu = require("qiniu");
-        qiniu.conf.ACCESS_KEY = '';
-        qiniu.conf.SECRET_KEY = '';
-        var bucket = '';
+        qiniu.conf.ACCESS_KEY = config.qiniu.ACCESS_KEY;
+        qiniu.conf.SECRET_KEY = config.qiniu.SECRET_KEY;
+        var bucket = config.qiniu.bucket;
         var key = uuid.v4() + '.jpg';
         var cbdata;
         //构建上传策略函数
@@ -735,12 +735,22 @@ module.exports = function (app, router) {
     // admin  pages
 
     router.get('/admin', function *() {
+        var name = this.session.user.name;
+      
+        if(isAdmin(name)) {
+             this.redirect('/index');
+        }
         yield this.render('admin',{
             messageCount: 0
         })
     });
 
     router.get('/admin_u', function *() {
+        var name = this.session.user.name;
+      
+        if(isAdmin(name)) {
+             this.redirect('/index');
+        }
         var users = yield $User.adminGet();
         yield this.render('adu',{
             messageCount: 0,
@@ -750,12 +760,22 @@ module.exports = function (app, router) {
 
 
     router.get('/admin_ask', function *() {
+        var name = this.session.user.name;
+      
+        if(isAdmin(name)) {
+             this.redirect('/index');
+        }
         yield this.render('adas',{
             messageCount: 0
         })
     });
 
     router.get('/admin_activity', function *() {
+        var name = this.session.user.name;
+      
+        if(isAdmin(name)) {
+             this.redirect('/index');
+        }
         yield this.render('ada',{
             messageCount: 0,
             activities: $Activity.adminGet()
@@ -763,6 +783,11 @@ module.exports = function (app, router) {
     });
 
     router.get('/admin_job', function *() {
+        var name = this.session.user.name;
+      
+        if(isAdmin(name)) {
+             this.redirect('/index');
+        }
         yield this.render('adj',{
             messageCount: 0,
             jobs: $Job.adminGet()
@@ -770,6 +795,11 @@ module.exports = function (app, router) {
     });
 
     router.get('/admin_ug', function *() {
+        var name = this.session.user.name;
+      
+        if(isAdmin(name)) {
+             this.redirect('/index');
+        }
         yield this.render('adug',{
             messageCount: 0
             //: $Job.adminGet()

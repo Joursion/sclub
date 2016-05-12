@@ -3,50 +3,9 @@
   <component name="ChangeListManager">
     <list id="151cff9d-e400-4e28-b220-809bc6eba9aa" name="Default" comment="finish the basic function" />
     <list default="true" id="56141748-9199-49c8-a6c2-78ee0949c702" name="Rejected commit: Default" comment="finish the basic function">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/show_img/1.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/show_img/2.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/show_img/3.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/view/ada.ejs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/view/adas.ejs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/view/adj.ejs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/view/partials/admin.ejs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/view/adug.ejs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/routes/notify.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/view/publices/js/sclub.js" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/s.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/QQ截图20160217143627.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/QQ截图20160310140109.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/QQ截图20160310142244.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/QQ截图20160318004450.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/psb.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/view/discovery.ejs" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/view/partials/goods_list.ejs" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/view/partials/test.ejs" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/view/publices/css/club.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/view/publices/gravatar.ejs" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/view/publices/s.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/view/ssheader.ejs" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/view/about.ejs" afterPath="$PROJECT_DIR$/view/about.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/view/partials/activity_detail.ejs" afterPath="$PROJECT_DIR$/view/partials/activity_detail.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/view/admin.ejs" afterPath="$PROJECT_DIR$/view/admin.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/view/adu.ejs" afterPath="$PROJECT_DIR$/view/adu.ejs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/app.js" afterPath="$PROJECT_DIR$/routes/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/view/footer.ejs" afterPath="$PROJECT_DIR$/view/footer.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/view/good_create.ejs" afterPath="$PROJECT_DIR$/view/good_create.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/view/partials/good_detail.ejs" afterPath="$PROJECT_DIR$/view/partials/good_detail.ejs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gulpfile.js" afterPath="$PROJECT_DIR$/gulpfile.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/view/header.ejs" afterPath="$PROJECT_DIR$/view/header.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/job.js" afterPath="$PROJECT_DIR$/lib/job.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/md5.js" afterPath="$PROJECT_DIR$/routes/md5.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/view/message.ejs" afterPath="$PROJECT_DIR$/view/message.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/message.js" afterPath="$PROJECT_DIR$/models/message.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/question.js" afterPath="$PROJECT_DIR$/lib/question.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/view/partials/question_detail.ejs" afterPath="$PROJECT_DIR$/view/partials/question_detail.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/view/publices/css/sclub.css" afterPath="$PROJECT_DIR$/view/publices/css/sclub.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/user.js" afterPath="$PROJECT_DIR$/lib/user.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/user.js" afterPath="$PROJECT_DIR$/models/user.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="sclub.iws" />
@@ -71,8 +30,8 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="767" column="33" selection-start-line="767" selection-start-column="33" selection-end-line="767" selection-end-column="33" />
+            <state vertical-scroll-proportion="-0.24242425">
+              <caret line="84" column="0" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -82,21 +41,21 @@
         <entry file="file://$PROJECT_DIR$/routes/sendmail.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="14" column="31" selection-start-line="14" selection-start-column="15" selection-end-line="14" selection-end-column="31" />
+              <caret line="9" column="46" selection-start-line="9" selection-start-column="46" selection-end-line="9" selection-end-column="46" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider editor-type-id="MultiMarkdownFxPreviewEditor">
             <state />
           </provider>
           <provider selected="true" editor-type-id="split-provider[text-editor;MultiMarkdownPreviewEditor]">
             <state split_layout="FIRST">
-              <first_editor vertical-scroll-proportion="0.25">
-                <caret line="14" column="78" selection-start-line="14" selection-start-column="78" selection-end-line="14" selection-end-column="78" />
+              <first_editor vertical-scroll-proportion="1.5833334">
+                <caret line="38" column="17" selection-start-line="38" selection-start-column="17" selection-end-line="38" selection-end-column="17" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -104,10 +63,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="1.png" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/show_img/1.png">
-          <provider selected="true" editor-type-id="images">
-            <state />
+      <file leaf-file-name="gulpfile.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/gulpfile.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.31630972">
+              <caret line="8" column="19" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
+              <folding />
+            </state>
           </provider>
         </entry>
       </file>
@@ -152,7 +114,6 @@
         <option value="$PROJECT_DIR$/view/good.ejs" />
         <option value="$PROJECT_DIR$/view/partials/job_detail.ejs" />
         <option value="$PROJECT_DIR$/lib/good.js" />
-        <option value="$PROJECT_DIR$/routes/sendmail.js" />
         <option value="$PROJECT_DIR$/view/activity_index.ejs" />
         <option value="$PROJECT_DIR$/view/good_index.ejs" />
         <option value="$PROJECT_DIR$/view/ask_index.ejs" />
@@ -184,7 +145,6 @@
         <option value="$PROJECT_DIR$/view/publices/js/sclub.js" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/lib/question.js" />
-        <option value="$PROJECT_DIR$/gulpfile.js" />
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/lib/user.js" />
         <option value="$PROJECT_DIR$/models/user.js" />
@@ -197,7 +157,9 @@
         <option value="$PROJECT_DIR$/lib/job.js" />
         <option value="$PROJECT_DIR$/view/adj.ejs" />
         <option value="$PROJECT_DIR$/view/ada.ejs" />
+        <option value="$PROJECT_DIR$/routes/sendmail.js" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/gulpfile.js" />
       </list>
     </option>
   </component>
@@ -214,9 +176,9 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="24" />
+    <option name="y" value="52" />
     <option name="width" value="1366" />
-    <option name="height" value="744" />
+    <option name="height" value="716" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -308,7 +270,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/react/r-chat" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="JavaScriptLanguageLevel" value="ES6" />
@@ -428,8 +390,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="24" width="1366" height="744" extended-state="6" />
-    <editor active="true" />
+    <frame x="0" y="52" width="1366" height="716" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -669,13 +631,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gulpfile.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="16" column="3" selection-start-line="16" selection-start-column="3" selection-end-line="16" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/activity_comment.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -839,18 +794,18 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/app.js">
+    <entry file="file://$PROJECT_DIR$/routes/sendmail.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="767" column="33" selection-start-line="767" selection-start-column="33" selection-end-line="767" selection-end-column="33" />
+          <caret line="9" column="46" selection-start-line="9" selection-start-column="46" selection-end-line="9" selection-end-column="46" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/sendmail.js">
+    <entry file="file://$PROJECT_DIR$/routes/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="31" selection-start-line="14" selection-start-column="15" selection-end-line="14" selection-end-column="31" />
+        <state vertical-scroll-proportion="-0.24242425">
+          <caret line="84" column="0" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -861,11 +816,19 @@
       </provider>
       <provider selected="true" editor-type-id="split-provider[text-editor;MultiMarkdownPreviewEditor]">
         <state split_layout="FIRST">
-          <first_editor vertical-scroll-proportion="0.25">
-            <caret line="14" column="78" selection-start-line="14" selection-start-column="78" selection-end-line="14" selection-end-column="78" />
+          <first_editor vertical-scroll-proportion="1.5833334">
+            <caret line="38" column="17" selection-start-line="38" selection-start-column="17" selection-end-line="38" selection-end-column="17" />
             <folding />
           </first_editor>
           <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gulpfile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.31630972">
+          <caret line="8" column="19" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
+          <folding />
         </state>
       </provider>
     </entry>
