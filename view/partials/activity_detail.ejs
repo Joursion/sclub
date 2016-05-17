@@ -8,7 +8,7 @@
                     <h1 id="activity_title"> <%= activity.title %> </h1>
                     <div class="show_user">
                         <a href="/u/<%= activity.founder.name %>"><span id="activity_founder"><%= activity.founder.name %></span></a>
-                        发布于<%= activity.create_date.toString().substr(3,21) %>
+                        发布于<%= activity.create_at.toString().substr(3,21) %>
                     </div>
                     <div class="show">
                         <span class="glyphicon glyphicon-comment"></span> &nbsp;<%= activity.comment %>&nbsp;

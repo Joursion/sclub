@@ -16,6 +16,7 @@ var $Question = Models.$Question;
 var $QuestionComment = Models.$QuestionComment;
 
 /*测试代码片段*/
+var markdown = require('markdown').markdown;
 var formidable = require('formidable');
 var qn = require('qn');
 var koaBody = require('koa-body')();
@@ -273,14 +274,7 @@ module.exports = function (app, router) {
     router.post('/activity_create', function *() {
         var data = this.request.body;
         //data.title = "dsds";
-        data.create_date = Date.now();
-        data.update_date = Date.now();
         data.founder = this.session.user;
-        data.join = 1;
-        data.pv = 0;
-        data.comment = 0;
-        console.log(data);
-
         yield $Activity.addActivity(data);
         this.flash = {success: '发布活动成功'};
         this.redirect('/activity/p/1');
@@ -646,8 +640,11 @@ module.exports = function (app, router) {
 
     router.get('/job/:id', function *() {
         var id = this.params.id;
+        var job = yield $Job.getJobById(id);
+        var content = job.content;
         yield this.render('job',{
-            job: $Job.getJobById(id),
+            job: job,
+            content: markdown.toHTML(content),
             Hotjobs: $Job.getHotJob(),
             messageCount: 0
         })
@@ -662,7 +659,7 @@ module.exports = function (app, router) {
     router.post('/job_create', function *() {
         var data = this.request.body;
         yield $Job.addJob(data);
-        this.redirect('/job');
+        this.redirect('back');
         this.status = 200;
     });
 

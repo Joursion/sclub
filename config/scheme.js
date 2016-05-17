@@ -31,7 +31,7 @@ module.exports = {
     },
     "GET /admin":{
         "request":{
-            "session": checkLogin
+            "session": checkIsAdmin
         }
     },
     "GET /activity_create":{
@@ -44,9 +44,19 @@ module.exports = {
             "session": checkLogin
         }
     },
-    "GET /question_create":{
+    "(GET | POST) /question_create":{
          "request":{
             "session": checkLogin
+        }
+    },
+    "(GET | POST) /job_create": {
+        "request": {
+            "session": checkLogin
+        }
+    },
+    "GET /admin_u": {
+        "request": {
+            "session": checkIsAdmin
         }
     }
 };
@@ -120,6 +130,19 @@ function checkSigninBody() {
     return true;
 }
 
-
+function checkIsAdmin() {
+    var user = this.session.user.name;
+    console.log(user);
+    var flash;
+    if(user !== '123') {
+        flash = {error: '你当前没有权限'};
+    } 
+    if(flash){
+        this.flash = flash;
+        this.redirect('back');
+        return false;
+    }
+    return true;
+}
 
 

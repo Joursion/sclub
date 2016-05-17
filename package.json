@@ -2,7 +2,7 @@
   "name": "sclub",
   "version": "0.0.1",
   "description": "a club for transform",
-  "author":"joursion",
+  "author": "joursion",
   "dependencies": {
     "co-body": "*",
     "co-busboy": "*",
@@ -25,6 +25,7 @@
     "koa-router-cache": "0.3.0",
     "koa-scheme": "2.2.0",
     "koa-static-cache": "3.1.3",
+    "markdown": "^0.5.0",
     "markdown-it": "*",
     "merge-descriptors": "1.0.0",
     "moment": "*",
@@ -36,7 +37,7 @@
     "qn": "*",
     "validator": "4.4.0"
   },
-  "main" : "app.js",
+  "main": "app.js",
   "scripts": {
     "start": "node app.js"
   },

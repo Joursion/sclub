@@ -8,7 +8,7 @@
         <section class="col-md-8 col-sm-12 admin_activity">
             <% activities.forEach(function (activity) { %>
             <div class="activitiy">
-                活动标题:  <a href="/activity/<% activity._id %>"><%= activity.title %> </a>
+                活动标题:  <a href="/activity/<%= activity._id %>"><%= activity.title %> </a>
                 发布时间:  <%= activity.create_date %>
                 <div class="dropdown option">
                     <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">

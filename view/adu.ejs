@@ -8,7 +8,7 @@
         <setion class="col-md-8 col-sm-12 admin_u">
             <% users.forEach(function (user) { %>
             <div class="user">
-                用户:  <a href="/u/<% user.name %>"><%= user.name %> </a>
+                用户:  <a href="/u/<%= user.name %>"><%= user.name %> </a>
                 注册时间:  <%= user.reg_date %>
                 <div class="dropdown option">
                     <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
